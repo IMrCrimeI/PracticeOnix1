@@ -1,3 +1,9 @@
 <resources>
     <string name="app_name">PracticeOnixTask</string>
+    <string name="login_name">Введите имя пользевателя…</string>
+    <string name="login_password">Введите пароль…</string>
+    <string name="agree_button">Потдверить</string>
+    <string name="wrong_login">Неправильное имя пользователя (Имя пользовател не должно быть пустое и содержать пробелы)</string>
+    <string name="wrong_password">Неправильный пароль (Пароль не должно быть пустой и содержать пробелы)</string>
+    <string name="correctLogin">Приветствую Admin</string>
 </resources>
