@@ -30,12 +30,14 @@ class LoginFragment : Fragment() {
         super.onViewCreated(view, savedInstanceState)
         binding.lifecycleOwner = viewLifecycleOwner
 
-        binding.loginSubmit.setOnClickListener {
-            val login = binding.loginNameInput.text.toString()
-            val password = binding.loginPasswordInput.text.toString()
-            binding.loginName.error = null
-            binding.loginPassword.error = null
-            viewModel.checkLogin(login, password)
+        binding.apply {
+            loginSubmit.setOnClickListener {
+                val login = loginNameInput.text.toString()
+                val password = loginPasswordInput.text.toString()
+                loginName.error = ""
+                loginPassword.error = ""
+                viewModel.checkLogin(login, password)
+            }
         }
 
 
@@ -43,16 +45,15 @@ class LoginFragment : Fragment() {
             binding.apply {
                 when (it) {
                     ScreenState.ERROR_LOGIN -> loginName.error =
-                        context?.getString(R.string.wrong_login)
+                        requireContext().getString(R.string.wrong_login)
                     ScreenState.ERROR_PASSWORD -> loginPassword.error =
-                        context?.getString(R.string.wrong_password)
+                        requireContext().getString(R.string.wrong_password)
                     ScreenState.SUCCESS -> {
                         viewModel.clearLogin()
-                        loginNameInput.text = null
-                        loginPasswordInput.text = null
+                        loginNameInput.text?.clear()
+                        loginPasswordInput.text?.clear()
                         findNavController().navigate(R.id.action_loginFragment_to_userFragment)
-                    }
-                    else -> {}
+                    } else -> {}
                 }
             }
         }
