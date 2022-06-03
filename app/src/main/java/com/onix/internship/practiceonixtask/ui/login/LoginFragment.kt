@@ -21,39 +21,21 @@ class LoginFragment : Fragment() {
         container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View {
-        val view = FragmentLoginBinding.inflate(inflater, container, false)
-        binding = view
-        return binding.root
+        return FragmentLoginBinding.inflate(inflater, container, false).also { binding = it }.root
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         binding.lifecycleOwner = viewLifecycleOwner
-
-        binding.apply {
-            loginSubmit.setOnClickListener {
-                val login = loginNameInput.text.toString()
-                val password = loginPasswordInput.text.toString()
-                loginName.error = ""
-                loginPassword.error = ""
-                viewModel.checkLogin(login, password)
-            }
-        }
-
+        binding.viewModel = viewModel
 
         viewModel.screenState.observe(viewLifecycleOwner) {
             binding.apply {
-                when (it) {
-                    ScreenState.ERROR_LOGIN -> loginName.error =
-                        requireContext().getString(R.string.wrong_login)
-                    ScreenState.ERROR_PASSWORD -> loginPassword.error =
-                        requireContext().getString(R.string.wrong_password)
-                    ScreenState.SUCCESS -> {
-                        viewModel.clearLogin()
-                        loginNameInput.text?.clear()
-                        loginPasswordInput.text?.clear()
-                        findNavController().navigate(R.id.action_loginFragment_to_userFragment)
-                    } else -> {}
+                if (it == ScreenState.SUCCESS) {
+                    this@LoginFragment.viewModel.clearLogin()
+                    loginNameInput.text?.clear()
+                    loginPasswordInput.text?.clear()
+                    findNavController().navigate(R.id.action_loginFragment_to_userFragment)
                 }
             }
         }

@@ -19,9 +19,8 @@ class AnimationFragment : Fragment(), Animator.AnimatorListener {
         container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View {
-        val view = FragmentAnimationBinding.inflate(inflater, container, false)
-        binding = view
-        return binding.root
+        return FragmentAnimationBinding.inflate(inflater, container, false)
+            .also { binding = it }.root
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
