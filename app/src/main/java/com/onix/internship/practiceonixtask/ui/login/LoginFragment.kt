@@ -7,7 +7,6 @@ import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.navigation.fragment.findNavController
-import com.onix.internship.practiceonixtask.R
 import com.onix.internship.practiceonixtask.ScreenState
 import com.onix.internship.practiceonixtask.databinding.FragmentLoginBinding
 
@@ -26,16 +25,19 @@ class LoginFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        binding.lifecycleOwner = viewLifecycleOwner
-        binding.viewModel = viewModel
+        binding.apply {
+            lifecycleOwner = viewLifecycleOwner
+            viewModel = this@LoginFragment.viewModel
+            this@LoginFragment.viewModel.screenState.observe(viewLifecycleOwner) {
 
-        viewModel.screenState.observe(viewLifecycleOwner) {
-            binding.apply {
                 if (it == ScreenState.SUCCESS) {
-                    this@LoginFragment.viewModel.clearLogin()
+                    this@LoginFragment.viewModel.resetScreenState()
+                    val action = LoginFragmentDirections.actionLoginFragmentToUserFragment(
+                        this@LoginFragment.viewModel.model.login.get().toString()
+                    )
                     loginNameInput.text?.clear()
                     loginPasswordInput.text?.clear()
-                    findNavController().navigate(R.id.action_loginFragment_to_userFragment)
+                    findNavController().navigate(action)
                 }
             }
         }

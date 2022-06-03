@@ -14,7 +14,7 @@ class LoginViewModel : ViewModel() {
         _screenState.value = model.validate()
     }
 
-    fun clearLogin() {
+    fun resetScreenState() {
         _screenState.value = ScreenState.IDLE
     }
 
