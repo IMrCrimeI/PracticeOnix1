@@ -2,6 +2,8 @@ plugins {
     id 'com.android.application'
     id 'org.jetbrains.kotlin.android'
     id 'androidx.navigation.safeargs'
+    id 'kotlin-android'
+    id 'kotlin-kapt'
 }
 
 android {
@@ -31,6 +33,7 @@ android {
     dataBinding {
         enabled = true
     }
+    buildToolsVersion '32.1.0 rc1'
 }
 
 dependencies {
