@@ -8,9 +8,9 @@ data class LoginModel(private val _login: String = "", private val _password: St
     val password = ObservableField(_login)
 
     fun validate(): ScreenState {
-        return if (login.get() != ADMIN_LOGIN || login.get().toString().isBlank()) {
+        return if (login.get() != ADMIN_LOGIN) {
             ScreenState.ERROR_LOGIN
-        } else return if (password.get() != ADMIN_PASSWORD || password.get().toString().isBlank()) {
+        } else return if (password.get() != ADMIN_PASSWORD) {
             ScreenState.ERROR_PASSWORD
         } else ScreenState.SUCCESS
     }

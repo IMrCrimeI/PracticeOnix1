@@ -6,7 +6,7 @@
     <dimen name="margin_end">12dp</dimen>
     <dimen name="margin_horizontal">12dp</dimen>
     <dimen name="margin_horizontal_land">64dp</dimen>
-    <dimen name="main_text">40sp</dimen>
+    <dimen name="main_text">35sp</dimen>
     <dimen name="image_layout_height">300dp</dimen>
     <dimen name="padding_horizontal_size">100dp</dimen>
 </resources>

@@ -24,10 +24,23 @@
         <action
             android:id="@+id/action_loginFragment_to_userFragment"
             app:destination="@id/userFragment" />
+        <action
+            android:id="@+id/action_loginFragment_to_userFragment2"
+            app:destination="@id/userFragment" >
+            <argument
+                android:name="test"
+                app:argType="string"
+                android:defaultValue="" />
+        </action>
     </fragment>
     <fragment
         android:id="@+id/userFragment"
         android:name="com.onix.internship.practiceonixtask.ui.user.UserFragment"
         android:label="UserFragment"
-        tools:layout="@layout/fragment_user" />
+        tools:layout="@layout/fragment_user" >
+        <argument
+            android:name="test"
+            app:argType="string"
+            android:defaultValue="" />
+    </fragment>
 </navigation>

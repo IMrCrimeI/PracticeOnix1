@@ -34,7 +34,6 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="@dimen/margin_top"
-            android:text="@string/correctLogin"
             android:textColor="@color/teal_200"
             android:textSize="@dimen/main_text"
             android:textStyle="italic"
