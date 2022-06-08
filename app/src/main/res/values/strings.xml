@@ -1,3 +1,8 @@
 <resources>
-    <string name="app_name">PracticeOnixTask</string>
+    <string name="app_name">PracticeOnixTaskLessonTwo</string>
+    <string name="welcome">Приветствую</string>
+    <string name="move_to_test">Перейти к тестам</string>
+    <string name="answer_entry_field">Введите ответ…</string>
+    <string name="next">дальше</string>
+    <string name="go_back">Вернутся на главный экран</string>
 </resources>
