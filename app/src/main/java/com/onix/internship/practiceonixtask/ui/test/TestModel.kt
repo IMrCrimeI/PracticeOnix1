@@ -1,7 +1,7 @@
 package com.onix.internship.practiceonixtask.ui.test
 
 data class TestModel(
-    var index: Int = 0,
-    var array: ArrayList<Int> = arrayListOf(),
+    var firstTypeQuestionArray: ArrayList<Int> = arrayListOf(),
+    var secondTypeQuestionArray: ArrayList<Int> = arrayListOf(),
     var inputAnswer: String = ""
 )

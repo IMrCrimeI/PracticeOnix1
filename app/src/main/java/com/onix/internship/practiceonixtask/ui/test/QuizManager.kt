@@ -1,136 +1,154 @@
 package com.onix.internship.practiceonixtask.ui.test
 
+import android.content.Context
+import com.onix.internship.practiceonixtask.R
 import com.onix.internship.practiceonixtask.data.Answer
 import com.onix.internship.practiceonixtask.data.FirstTypeQuestion
+import com.onix.internship.practiceonixtask.data.Index
 import com.onix.internship.practiceonixtask.data.SecondTypeQuestion
-import com.onix.internship.practiceonixtask.data.ThirdTypeQuestion
 
-class QuizManager {
-
-    var firstIndex = 0
-    var secondIndex = 0
-    var thirdIndex = 0
+class QuizManager(context: Context) {
+    var index = Index(0, 0, 0)
     var counter = 0
 
     private val firstTypeQuestionList = listOf(
         FirstTypeQuestion(
+            context.getString(R.string.first_question_of_the_first_type),
             listOf(
-                Answer(1, "4"), Answer(2, "5"),
-                Answer(3, "6")
+                Answer(1, context.getString(R.string.f_a_f_q_f_t)),
+                Answer(2, context.getString(R.string.s_a_f_q_f_t)),
+                Answer(3, context.getString(R.string.t_a_f_q_f_t))
             ),
-            2, "Сколько океанов на нашей планете?"
+            listOf(2)
         ),
         FirstTypeQuestion(
+            context.getString(R.string.second_question_of_the_first_type),
             listOf(
 
-                Answer(1, "Вольт"), Answer(2, "Ватт"),
-                Answer(3, "Ампер")
+                Answer(1, context.getString(R.string.f_a_s_q_f_t)),
+                Answer(2, context.getString(R.string.s_a_s_q_f_t)),
+                Answer(3, context.getString(R.string.t_a_s_q_f_t))
             ),
-            3, "Единица измерения силы тока?"
+            listOf(3)
         ),
         FirstTypeQuestion(
+            context.getString(R.string.third_question_of_the_first_type),
             listOf(
 
-                Answer(1, "Амазонка"), Answer(2, "Нил"),
-                Answer(3, "Янцзы")
+                Answer(1, context.getString(R.string.f_a_t_q_f_t)),
+                Answer(2, context.getString(R.string.s_a_t_q_f_t)),
+                Answer(3, context.getString(R.string.t_a_t_q_f_t))
             ),
-            1, "Самая длинная река в мире?"
+            listOf(1)
         )
     )
 
     private val secondTypeQuestionList = listOf(
-        SecondTypeQuestion(
+        FirstTypeQuestion(
+            context.getString(R.string.first_question_of_the_second_type),
             listOf(
-                Answer(1, "Медведь"), Answer(2, "Скиний кит"),
-                Answer(3, "Жираф"), Answer(4, "Лосось"),
-                Answer(5, "Панда"), Answer(6, "Осьминог")
+                Answer(1, context.getString(R.string.f_a_f_q_s_t)),
+                Answer(2, context.getString(R.string.s_a_f_q_s_t)),
+                Answer(3, context.getString(R.string.t_a_f_q_s_t)),
+                Answer(4, context.getString(R.string.fr_a_f_q_s_t)),
+                Answer(5, context.getString(R.string.ff_a_f_q_s_t)),
+                Answer(6, context.getString(R.string.sx_a_f_q_s_t))
             ),
-            arrayListOf(4, 6), "Кто не отсносится к млекопитающим?"
+            arrayListOf(4, 6),
         ),
-        SecondTypeQuestion(
+        FirstTypeQuestion(
+            context.getString(R.string.second_question_of_the_second_type),
             listOf(
-                Answer(1, "Правильная экспозиция"),
-                Answer(2, "Композиция кадра"),
-                Answer(3, "Авторскач задумка"),
-                Answer(4, "Правильная освещонность сцены"),
-                Answer(5, "Фотоаппарат"),
-                Answer(6, "Время сьемки")
+                Answer(1, context.getString(R.string.f_a_s_q_s_t)),
+                Answer(2, context.getString(R.string.s_a_s_q_s_t)),
+                Answer(3, context.getString(R.string.t_a_s_q_s_t)),
+                Answer(4, context.getString(R.string.fr_a_s_q_s_t)),
+                Answer(5, context.getString(R.string.ff_a_s_q_s_t)),
+                Answer(6, context.getString(R.string.sx_a_s_q_s_t))
             ),
-            arrayListOf(1, 2, 4), "Что самое важное в хорошей фотографии?"
+            arrayListOf(1, 2, 4)
         ),
-        SecondTypeQuestion(
+        FirstTypeQuestion(
+            context.getString(R.string.third_question_of_the_second_type),
             listOf(
-                Answer(1, "Кто это спрашивет?"), Answer(2, "6"),
-                Answer(3, "4.0"), Answer(4, "1+1+1+1"),
-                Answer(5, "4"), Answer(6, "Четыре")
+                Answer(1, context.getString(R.string.f_a_t_q_s_t)),
+                Answer(2, context.getString(R.string.s_a_t_q_s_t)),
+                Answer(3, context.getString(R.string.t_a_t_q_s_t)),
+                Answer(4, context.getString(R.string.fr_a_t_q_s_t)),
+                Answer(5, context.getString(R.string.ff_a_t_q_s_t)),
+                Answer(6, context.getString(R.string.sx_a_t_q_s_t))
             ),
-            arrayListOf(3, 5, 6), "2+2?"
+            arrayListOf(3, 5, 6)
         )
     )
 
     private val thirdTypeQuestionList = listOf(
-        ThirdTypeQuestion(
-            "Из-за наклона земной оси",
-            "Почему времена года сменяют друг друга?(Из-за ...)"
+        SecondTypeQuestion(
+            context.getString(R.string.first_question_of_the_third_type),
+            context.getString(R.string.a_f_q_t_t)
+
         ),
-        ThirdTypeQuestion(
-            "46",
-            "Сколько хромосом в геноме человека?"
+        SecondTypeQuestion(
+            context.getString(R.string.second_question_of_the_third_type),
+            context.getString(R.string.a_s_q_t_t)
+
         ),
-        ThirdTypeQuestion(
-            "Ножницы",
-            "Два кольца, два конца, посередине гвоздик, что это)))?"
+        SecondTypeQuestion(
+            context.getString(R.string.third_question_of_the_third_type),
+            context.getString(R.string.a_t_q_t_t)
+
         )
     )
 
-    fun chekAnswer(firstCurrentIndex: Int, seccondCurrentIndex: ArrayList<Int>, answer: String) {
-        if (firstTypeQuestionList.size > firstIndex) {
-            if (firstCurrentIndex == firstTypeQuestionList[firstIndex].correctIndex) {
+    fun chekAnswer(
+        firstCurrentIndex: ArrayList<Int>,
+        secondCurrentIndex: ArrayList<Int>,
+        answer: String
+    ) {
+        if (firstTypeQuestionList.size > index.firstIndex) {
+            if (firstCurrentIndex.containsAll(firstTypeQuestionList[index.firstIndex].correctIndex)) {
                 counter++
             }
         }
-        if (secondTypeQuestionList.size > secondIndex) {
-            if (seccondCurrentIndex.containsAll(secondTypeQuestionList[secondIndex].correctIndex)) {
+        if (secondTypeQuestionList.size > index.secondIndex) {
+            if (secondCurrentIndex.containsAll(secondTypeQuestionList[index.secondIndex].correctIndex)) {
                 counter++
             }
         }
-        if (thirdTypeQuestionList.size > thirdIndex) {
-            if (answer == thirdTypeQuestionList[thirdIndex].correctAnswer) {
+        if (thirdTypeQuestionList.size > index.thirdIndex) {
+            if (answer == thirdTypeQuestionList[index.thirdIndex].correctAnswer) {
                 counter++
             }
         }
 
-        firstIndex++
-        secondIndex++
-        thirdIndex++
+        index.firstIndex++
+        index.secondIndex++
+        index.thirdIndex++
     }
 
-    fun getCurrentQuestion(): FirstTypeQuestion? {
-        return if (firstIndex < firstTypeQuestionList.size) {
-            firstTypeQuestionList[firstIndex]
+    fun getFirstTypeCurrentQuestion(): FirstTypeQuestion? {
+        return if (index.firstIndex < firstTypeQuestionList.size) {
+            firstTypeQuestionList[index.firstIndex]
         } else null
     }
 
-    fun getCurrentQuestion1(): SecondTypeQuestion? {
-        return if (secondIndex < secondTypeQuestionList.size) {
-            secondTypeQuestionList[secondIndex]
+    fun getSecondTypeCurrentQuestion1(): FirstTypeQuestion? {
+        return if (index.secondIndex < secondTypeQuestionList.size) {
+            secondTypeQuestionList[index.secondIndex]
         } else null
     }
 
-    fun getCurrentQuestion2(): ThirdTypeQuestion? {
-        return if (thirdIndex < thirdTypeQuestionList.size) {
-            thirdTypeQuestionList[thirdIndex]
+    fun getThirdTypeCurrentQuestion2(): SecondTypeQuestion? {
+        return if (index.thirdIndex < thirdTypeQuestionList.size) {
+            thirdTypeQuestionList[index.thirdIndex]
         } else null
-    }
-
-    fun test() {
     }
 
     companion object {
         private var instance: QuizManager? = null
 
-        fun getInstance(): QuizManager {
-            return instance ?: QuizManager().also { instance = it }
+        fun getInstance(context: Context): QuizManager {
+            return instance ?: QuizManager(context).also { instance = it }
         }
     }
 }

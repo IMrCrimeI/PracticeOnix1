@@ -5,44 +5,54 @@ import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import com.onix.internship.practiceonixtask.data.FirstTypeQuestion
 import com.onix.internship.practiceonixtask.data.SecondTypeQuestion
-import com.onix.internship.practiceonixtask.data.ThirdTypeQuestion
 
-class TestViewModel : ViewModel() {
+class TestViewModel(private val quizManager: QuizManager) : ViewModel() {
 
     private val _firstTypeQuestion = MutableLiveData<FirstTypeQuestion>()
     val firstTypeQuestion: LiveData<FirstTypeQuestion?> = _firstTypeQuestion
 
-    private val _secondTypeQuestion = MutableLiveData<SecondTypeQuestion>()
-    val secondTypeQuestion: LiveData<SecondTypeQuestion?> = _secondTypeQuestion
+    private val _secondTypeQuestion = MutableLiveData<FirstTypeQuestion>()
+    val secondTypeQuestion: LiveData<FirstTypeQuestion?> = _secondTypeQuestion
 
-    private val _thirdTypeQuestion = MutableLiveData<ThirdTypeQuestion>()
-    val thirdTypeQuestion: LiveData<ThirdTypeQuestion?> = _thirdTypeQuestion
+    private val _thirdTypeQuestion = MutableLiveData<SecondTypeQuestion>()
+    val thirdTypeQuestion: LiveData<SecondTypeQuestion?> = _thirdTypeQuestion
 
     val model = TestModel()
 
     private val _move = MutableLiveData<Unit>()
     val move: LiveData<Unit> = _move
 
-    private val quizManager = QuizManager.getInstance()
-
-
     init {
-        _firstTypeQuestion.value = quizManager.getCurrentQuestion()
-        _secondTypeQuestion.value = quizManager.getCurrentQuestion1()
-        _thirdTypeQuestion.value = quizManager.getCurrentQuestion2()
+        _firstTypeQuestion.value = quizManager.getFirstTypeCurrentQuestion()
+        _secondTypeQuestion.value = quizManager.getSecondTypeCurrentQuestion1()
+        _thirdTypeQuestion.value = quizManager.getThirdTypeCurrentQuestion2()
     }
 
     fun chekAnswer() {
-        quizManager.chekAnswer(model.index, model.array, model.inputAnswer)
+        quizManager.chekAnswer(
+            model.firstTypeQuestionArray,
+            model.secondTypeQuestionArray,
+            model.inputAnswer
+        )
         _move.value = Unit
     }
 
-    fun writeIndex(index: Int) {
-        model.index = index
+    fun writeFirstTypeQuestionIndex(index: Int, isChecked: Boolean) {
+        with(model.firstTypeQuestionArray) {
+            if (isChecked) {
+                if (!contains(index)) {
+                    add(index)
+                }
+            } else {
+                if (contains(index)) {
+                    remove(index)
+                }
+            }
+        }
     }
 
-    fun writeSecondIndex(element: Int, isChecked: Boolean) {
-        with(model.array) {
+    fun writeSecondTypeQuestionIndex(element: Int, isChecked: Boolean) {
+        with(model.secondTypeQuestionArray) {
             if (isChecked) {
                 if (!contains(element)) {
                     add(element)
