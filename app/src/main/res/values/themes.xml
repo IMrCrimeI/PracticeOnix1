@@ -1,7 +1,8 @@
 <resources>
     <!-- Base application theme. -->
-    <style name="Theme.OnixPractice_1" parent="Theme.MaterialComponents.DayNight.DarkActionBar">
+    <style name="Theme.PracticeOnixTask" parent="Theme.MaterialComponents.DayNight.DarkActionBar">
         <!-- Primary brand color. -->
+        <item name="android:textColorPrimary">@color/black</item>
         <item name="colorPrimary">@color/purple_500</item>
         <item name="colorPrimaryVariant">@color/purple_700</item>
         <item name="colorOnPrimary">@color/white</item>

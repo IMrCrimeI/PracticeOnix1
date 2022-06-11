@@ -1,3 +1,66 @@
-<resources xmlns:tools="http://schemas.android.com/tools">
-    <string name="app_name" tools:ignore="Typos">OnixPractice_1</string>
+<resources>
+    <string name="app_name">PracticeOnixTaskLessonTwo</string>
+    <string name="welcome">Приветствую</string>
+    <string name="move_to_test">Перейти к тестам</string>
+    <string name="answer_entry_field">Введите ответ…</string>
+    <string name="next">дальше</string>
+    <string name="go_back">Вернутся на главный экран</string>
+    <!-- questions first type -->
+    <string name="first_question_of_the_first_type">Сколько океанов на нашей планете?</string>
+    <string name="second_question_of_the_first_type">Единица измерения силы тока?</string>
+    <string name="third_question_of_the_first_type">Самая длинная река в мире?</string>
+    <!-- questions second type -->
+    <string name="first_question_of_the_second_type">Кто не отсносится к млекопитающим?</string>
+    <string name="second_question_of_the_second_type">Что самое важное в хорошей фотографии?</string>
+    <string name="third_question_of_the_second_type">2+2?</string>
+    <!-- questions third type -->
+    <string name="first_question_of_the_third_type">Почему времена года сменяют друг друга?(Из-за …)</string>
+    <string name="second_question_of_the_third_type">Сколько хромосом в геноме человека?</string>
+    <string name="third_question_of_the_third_type">Два кольца, два конца, посередине гвоздик, что это)))?</string>
+
+    <!-- Answers first type question -->
+    <!-- Answers first question -->
+    <string name="f_a_f_q_f_t">4</string>
+    <string name="s_a_f_q_f_t">5</string>
+    <string name="t_a_f_q_f_t">6</string>
+    <!-- Answers second question -->
+    <string name="f_a_s_q_f_t">Вольт</string>
+    <string name="s_a_s_q_f_t">Ватт</string>
+    <string name="t_a_s_q_f_t">Ампер</string>
+    <!-- Answers third question -->
+    <string name="f_a_t_q_f_t">Амазонка</string>
+    <string name="s_a_t_q_f_t">Нил</string>
+    <string name="t_a_t_q_f_t">Янцзы</string>
+
+    <!-- Answers second type question -->
+    <!-- Answers first question -->
+    <string name="f_a_f_q_s_t">Медведь</string>
+    <string name="s_a_f_q_s_t">Скиний кит</string>
+    <string name="t_a_f_q_s_t">Жираф</string>
+    <string name="fr_a_f_q_s_t">Лосось</string>
+    <string name="ff_a_f_q_s_t">Панда</string>
+    <string name="sx_a_f_q_s_t">Осьминог</string>
+    <!-- Answers second question -->
+    <string name="f_a_s_q_s_t">Правильная экспозиция</string>
+    <string name="s_a_s_q_s_t">Композиция кадра</string>
+    <string name="t_a_s_q_s_t">Авторскач задумка</string>
+    <string name="fr_a_s_q_s_t">Правильная освещонность сцены</string>
+    <string name="ff_a_s_q_s_t">Фотоаппарат</string>
+    <string name="sx_a_s_q_s_t">Время сьемки</string>
+    <!-- Answers third question -->
+    <string name="f_a_t_q_s_t">Кто это спрашивет?</string>
+    <string name="s_a_t_q_s_t">6</string>
+    <string name="t_a_t_q_s_t">4.0</string>
+    <string name="fr_a_t_q_s_t">1+1+1+1</string>
+    <string name="ff_a_t_q_s_t">4</string>
+    <string name="sx_a_t_q_s_t">Четыре</string>
+
+    <!-- Answer third type question -->
+    <!-- Answer first question -->
+    <string name="a_f_q_t_t">Из-за наклона земной оси</string>
+    <!-- Answer second question -->
+    <string name="a_s_q_t_t">46</string>
+    <!-- Answer third question -->
+    <string name="a_t_q_t_t">Ножницы</string>
+
 </resources>

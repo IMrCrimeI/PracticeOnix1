@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/nav_graph"
+    app:startDestination="@id/greetingsFragment">
+
+    <fragment
+        android:id="@+id/greetingsFragment"
+        tools:layout="@layout/fragment_greetings"
+        android:name="com.onix.internship.practiceonixtask.ui.greetings.GreetingsFragment"
+        android:label="GreetingsFragment">
+        <action
+            android:id="@+id/action_greetingsFragment_to_tetsFragment"
+            app:destination="@id/testFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/testFragment"
+        tools:layout="@layout/fragment_test"
+        android:name="com.onix.internship.practiceonixtask.ui.test.TestFragment"
+        android:label="TetsFragment">
+        <action
+            android:id="@+id/action_tetsFragment_self"
+            app:destination="@id/testFragment" />
+        <action
+            android:id="@+id/action_tetsFragment_to_resultFragment"
+            app:destination="@id/resultFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/resultFragment"
+        tools:layout="@layout/fragment_result"
+        android:name="com.onix.internship.practiceonixtask.ui.result.ResultFragment"
+        android:label="ResultFragment" >
+        <action
+            android:id="@+id/action_resultFragment_to_greetingsFragment"
+            app:destination="@id/greetingsFragment"
+            app:popUpTo="@id/greetingsFragment"
+            app:popUpToInclusive="true" />
+    </fragment>
+</navigation>
