@@ -2,16 +2,34 @@
 <navigation xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:id="@+id/home"
-    app:startDestination="@id/splashFragment">
-
+    app:startDestination="@id/displayFragment">
     <fragment
-        android:id="@+id/splashFragment"
-        android:name="com.onix.internship.ui.splash.SplashFragment"
-        android:label="SplashFragment" />
-
+        android:id="@+id/displayFragment"
+        android:name="com.onix.internship.ui.display.DisplayFragment"
+        android:label="DisplayFragment" >
+        <action
+            android:id="@+id/action_displayFragment_to_choiceFragment"
+            app:destination="@id/choiceFragment" />
+    </fragment>
     <fragment
-        android:id="@+id/canvasFragment"
-        android:name="com.onix.internship.ui.canvas.CanvasFragment"
-        android:label="CanvasFragment" />
-
+        android:id="@+id/choiceFragment"
+        android:name="com.onix.internship.ui.choice.ChoiceFragment"
+        android:label="ChoiceFragment" >
+        <action
+            android:id="@+id/action_choiceFragment_to_gameFragment"
+            app:destination="@id/gameFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/gameFragment"
+        android:name="com.onix.internship.ui.game.GameFragment"
+        android:label="GameFragment" >
+        <argument
+            android:name="firstMove"
+            app:argType="boolean" />
+        <action
+            android:id="@+id/action_gameFragment_to_displayFragment"
+            app:destination="@id/displayFragment"
+            app:popUpTo="@id/displayFragment"
+            app:popUpToInclusive="true" />
+    </fragment>
 </navigation>
