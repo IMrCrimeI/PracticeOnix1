@@ -1,4 +1,4 @@
-package com.onix.internship.ui.game
+package com.onix.internship.ui.game.entities
 
 data class EmptyCell(
     val rowIndex: Int,

@@ -1,4 +1,10 @@
 package com.onix.internship.ui.game
 
-data class GameModel(var gameBoard:Array<IntArray> = Array(3){IntArray(3)})
+import com.onix.internship.ui.game.entities.CellState
+
+data class GameModel(
+    var boardArrayIndexes: Array<Array<CellState>> = Array(3) { Array(3){ CellState.EMPTY}}
+)
+
+
 

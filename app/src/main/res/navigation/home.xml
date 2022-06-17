@@ -2,7 +2,7 @@
 <navigation xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:id="@+id/home"
-    app:startDestination="@id/displayFragment">
+    app:startDestination="@id/splashFragment">
     <fragment
         android:id="@+id/displayFragment"
         android:name="com.onix.internship.ui.display.DisplayFragment"
@@ -31,5 +31,14 @@
             app:destination="@id/displayFragment"
             app:popUpTo="@id/displayFragment"
             app:popUpToInclusive="true" />
+        <action
+            android:id="@+id/action_gameFragment_to_choiceFragment"
+            app:destination="@id/choiceFragment"
+            app:popUpTo="@id/choiceFragment"
+            app:popUpToInclusive="true" />
     </fragment>
+    <fragment
+        android:id="@+id/splashFragment"
+        android:name="com.onix.internship.ui.splash.SplashFragment"
+        android:label="SplashFragment" />
 </navigation>

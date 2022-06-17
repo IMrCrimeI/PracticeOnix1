@@ -9,6 +9,8 @@ import android.util.AttributeSet
 import android.view.MotionEvent
 import android.view.View
 import com.onix.internship.R
+import com.onix.internship.ui.game.entities.CellState
+import com.onix.internship.ui.game.entities.WinType
 import kotlin.math.ceil
 
 class TicTacToeBoard(context: Context, attrs: AttributeSet?) : View(context, attrs) {
@@ -17,7 +19,7 @@ class TicTacToeBoard(context: Context, attrs: AttributeSet?) : View(context, att
     private var winningLine = false
     private val paint = Paint()
     private var cellSize = width / 3
-    private val game = GameViewModel()
+    private var gameViewModel: GameViewModel? = null
 
 
     private val typedArray: TypedArray = context.theme.obtainStyledAttributes(
@@ -31,7 +33,7 @@ class TicTacToeBoard(context: Context, attrs: AttributeSet?) : View(context, att
 
     fun setPlayer(player: Boolean) {
         if (player) {
-            game.computer()
+            gameViewModel?.computer()
         }
     }
 
@@ -66,26 +68,25 @@ class TicTacToeBoard(context: Context, attrs: AttributeSet?) : View(context, att
 
         if (action == MotionEvent.ACTION_DOWN) {
             val row = ceil(y / cellSize).toInt()
+            val rowIndex = row.dec()
             val col = ceil(x / cellSize).toInt()
+            val colIndex = col.dec()
 
             if (!winningLine) {
-
-                if (game.updateGameBoard(row, col)) {
+                if (gameViewModel?.updateGameBoard(rowIndex, colIndex) == true) {
                     invalidate()
-                    game.computer()
-                    invalidate()
-                    if (game.winnerCheck()) {
+                    if (gameViewModel?.winnerCheck() == true) {
                         winningLine = true
                         invalidate()
+                    } else {
+                        gameViewModel?.computer()
+                        if (gameViewModel?.winnerCheck() == true) {
+                            winningLine = true
+                            invalidate()
+                        }
                     }
-//                    if (game.player % 2 == 0) {
-//                        game.player = game.player - 1
-//                    } else {
-//                        game.player = game.player + 1
-//                    }
                 }
             }
-
             invalidate()
             return true
         }
@@ -96,32 +97,32 @@ class TicTacToeBoard(context: Context, attrs: AttributeSet?) : View(context, att
         paint.color = boardColor
         paint.strokeWidth = 16f
 
-        for (c in 1..2) {
+        repeat(VERTICAL_DELIMITERS_COUNT) { c ->
             canvas.drawLine(
-                cellSize * c.toFloat(),
+                cellSize * c.inc().toFloat(),
                 0f,
-                cellSize * c.toFloat(),
+                cellSize * c.inc().toFloat(),
                 canvas.width.toFloat(),
                 paint
             )
         }
 
-        for (r in 1..2) {
+        repeat(HORIZONTAL_DELIMITERS_COUNT) { r ->
             canvas.drawLine(
                 0f,
-                cellSize * r.toFloat(),
+                cellSize * r.inc().toFloat(),
                 canvas.width.toFloat(),
-                cellSize * r.toFloat(),
+                cellSize * r.inc().toFloat(),
                 paint
             )
         }
     }
 
     private fun drawMarkers(canvas: Canvas) {
-        for (r in 0..2) {
-            for (c in 0..2) {
-                if (game.gameBoard[r][c] != 0) {
-                    if (game.gameBoard[r][c] == 1) {
+        repeat(ROW) { r ->
+            repeat(COL) { c ->
+                if (gameViewModel?.gameBoard?.get(r)?.get(c) != CellState.EMPTY) {
+                    if (gameViewModel?.gameBoard?.get(r)?.get(c) == CellState.CROSS) {
                         drawX(canvas, r, c)
                     } else {
                         drawO(canvas, r, c)
@@ -136,17 +137,17 @@ class TicTacToeBoard(context: Context, attrs: AttributeSet?) : View(context, att
 
 
         canvas.drawLine(
-            (col + 1) * cellSize - cellSize * size,
+            col.inc() * cellSize - cellSize * size,
             row * cellSize + cellSize * size,
             col * cellSize + cellSize * size,
-            (row + 1) * cellSize - cellSize * size,
+            row.inc() * cellSize - cellSize * size,
             paint
         )
         canvas.drawLine(
             col * cellSize + cellSize * size,
             row * cellSize + cellSize * size,
-            (col + 1) * cellSize - cellSize * size,
-            (row + 1) * cellSize - cellSize * size,
+            col.inc() * cellSize - cellSize * size,
+            row.inc() * cellSize - cellSize * size,
             paint
         )
     }
@@ -196,18 +197,25 @@ class TicTacToeBoard(context: Context, attrs: AttributeSet?) : View(context, att
     }
 
     private fun drawWinningLine(canvas: Canvas) {
-        val row = game.winType[0]
-        val col = game.winType[1]
+        val row = gameViewModel?.winInfo?.row ?: 0
+        val col = gameViewModel?.winInfo?.col ?: 0
 
-        when (game.winType[2]) {
-            1 -> drawHorizontalLine(canvas, row, col)
-            2 -> drawVerticalLine(canvas, row, col)
-            3 -> drawDiagonalLineNeg(canvas)
-            4 -> drawDiagonalLinePos(canvas)
+        when (gameViewModel?.winInfo?.type) {
+            WinType.HORIZONTAL -> drawHorizontalLine(canvas, row, col)
+            WinType.VERTICAL-> drawVerticalLine(canvas, row, col)
+            WinType.DIAGONAL_LTR -> drawDiagonalLineNeg(canvas)
+            WinType.DIAGONAL_RTL -> drawDiagonalLinePos(canvas)
+            else -> {}
         }
     }
 
-    fun resetGame() {
-        game.resetGame()
+    fun setGame(game: GameViewModel){
+        gameViewModel = game
+    }
+    companion object {
+        const val HORIZONTAL_DELIMITERS_COUNT = 2
+        const val VERTICAL_DELIMITERS_COUNT = 2
+        const val ROW = 3
+        const val COL = 3
     }
 }

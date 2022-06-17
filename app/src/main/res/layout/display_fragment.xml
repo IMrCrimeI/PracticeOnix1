@@ -4,6 +4,9 @@
 
     <data>
 
+        <variable
+            name="viewModel"
+            type="com.onix.internship.ui.display.DisplayViewModel" />
     </data>
 
     <androidx.constraintlayout.widget.ConstraintLayout
@@ -13,20 +16,22 @@
         <TextView
             android:id="@+id/gameNameView"
             android:layout_width="match_parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintBottom_toTopOf="@+id/startGameButton"
-            app:layout_constraintTop_toTopOf="parent"
-            android:hint="@string/GameName"
+            android:layout_height="wrap_content"
             android:gravity="center"
+            android:text="@string/GameName"
+            android:textColor="?android:textColorPrimary"
             android:textSize="36sp"
-            android:layout_height="wrap_content"/>
+            app:layout_constraintBottom_toTopOf="@+id/startGameButton"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
 
         <Button
             android:id="@+id/startGameButton"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginHorizontal="48dp"
+            android:onClick="@{() -> viewModel.goToChoice()}"
             android:text="@string/StartGame"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"

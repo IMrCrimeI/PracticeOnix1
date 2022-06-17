@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name">Internship Onix</string>
+    <string name="app_name">TicTacToe</string>
 
     <string name="StartGame">Play</string>
     <string name="GameName">TicTacToe</string>
