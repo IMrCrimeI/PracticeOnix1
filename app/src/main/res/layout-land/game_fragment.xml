@@ -1,0 +1,80 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:custom="http://schemas.android.com/apk/res-auto">
+
+    <data>
+
+        <variable
+            name="model"
+            type="com.onix.internship.ui.game.GameModel" />
+
+        <variable
+            name="viewModel"
+            type="com.onix.internship.ui.game.GameViewModel" />
+
+        <import type="android.view.View" />
+
+        <variable
+            name="isComputerFirst"
+            type="java.lang.Boolean" />
+    </data>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <TextView
+            android:id="@+id/playerView"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:text="@{viewModel.text}"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintStart_toEndOf="@+id/ticTacToeBoard"
+            app:layout_constraintEnd_toEndOf="parent"
+            android:textSize="36sp" />
+
+        <com.onix.internship.ui.game.TicTacToeBoard
+            android:id="@+id/ticTacToeBoard"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toStartOf="@+id/playAgain"
+            app:layout_constraintBottom_toBottomOf="parent"
+            custom:OColor="#304FFE"
+            custom:WinningLineColor="#64DD17"
+            custom:XColor="#FF0000"
+            custom:boardColor="@color/black"
+            custom:game="@{viewModel}"
+            custom:player="@{isComputerFirst}" />
+
+        <Button
+            android:id="@+id/playAgain"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginHorizontal="16dp"
+            android:onClick="@{() -> viewModel.playAgainOrGoHome(true)}"
+            android:text="@string/play_again"
+            android:visibility="@{viewModel.sell ? View.GONE : View.VISIBLE}"
+            app:layout_constraintBottom_toTopOf="@+id/goHome"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toEndOf="@+id/ticTacToeBoard"
+            app:layout_constraintTop_toBottomOf="@+id/playerView" />
+
+        <Button
+            android:id="@+id/goHome"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginHorizontal="16dp"
+            android:onClick="@{() -> viewModel.playAgainOrGoHome(false)}"
+            android:text="@string/goHome"
+            app:layout_constraintTop_toBottomOf="@+id/playAgain"
+            android:visibility="@{viewModel.sell ? View.GONE : View.VISIBLE}"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toEndOf="@+id/ticTacToeBoard" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</layout>
