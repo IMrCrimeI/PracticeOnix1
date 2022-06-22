@@ -9,8 +9,23 @@
         android:name="com.onix.internship.ui.splash.SplashFragment"
         android:label="SplashFragment" />
     <fragment
-        android:id="@+id/screenFragment"
-        android:name="com.onix.internship.ui.screen.ScreenFragment"
-        android:label="ScreenFragment" />
+        android:id="@+id/wifiFragment"
+        android:name="com.onix.internship.ui.wifi.WifiFragment"
+        android:label="WifiFragment" >
+        <action
+            android:id="@+id/action_wifiFragment_to_wifiDetailDialogFragment"
+            app:destination="@id/wifiDetailDialogFragment" />
+    </fragment>
+    <dialog
+        android:id="@+id/wifiDetailDialogFragment"
+        android:name="com.onix.internship.ui.detail.WifiDetailDialogFragment"
+        android:label="WifiDetailDialogFragment" >
+        <argument
+            android:name="name"
+            app:argType="string" />
+        <argument
+            android:name="level"
+            app:argType="integer" />
+    </dialog>
 
 </navigation>
