@@ -2,7 +2,6 @@ package com.onix.internship.ui.wifi
 
 import android.net.wifi.ScanResult
 import android.os.Bundle
-import android.util.Log
 import android.view.Gravity
 import android.view.View
 import android.widget.TextView
@@ -43,11 +42,18 @@ class WifiFragment : BaseFragment<WifiFragmentBinding>(R.layout.wifi_fragment) {
 
                 textView.setPadding(10, 10, 10, 10)
                 textView.gravity = Gravity.CENTER
+                textView.height = 150
+                textView.width = 150
                 textView.background =
                     ContextCompat.getDrawable(requireContext(), R.drawable.online_indicator)
                 textView.text = data[it].SSID
                 textView.setOnClickListener { _ ->
-                    navigate(WifiFragmentDirections.actionWifiFragmentToWifiDetailDialogFragment(data[it].SSID, data[it].level))
+                    navigate(
+                        WifiFragmentDirections.actionWifiFragmentToWifiDetailDialogFragment(
+                            data[it].SSID,
+                            data[it].level
+                        )
+                    )
                 }
 
                 constraintLayout.addView(textView)
@@ -59,17 +65,12 @@ class WifiFragment : BaseFragment<WifiFragmentBinding>(R.layout.wifi_fragment) {
 
                 amountView += 360f / data.size.toFloat()
 
-                when {
-                    data[it].level >= -25 -> params.circleRadius = constraintLayout.width / 6
-
-                    data[it].level >= -50 -> params.circleRadius = constraintLayout.width / 4
-
-                    else -> params.circleRadius = constraintLayout.width / 2
-
-                }
-                Log.d("wifi123", constraintLayout.height.toString())
-
+                if (data[it].level > -50) params.circleRadius = constraintLayout.width / 7
+                else if (data[it].level > -80 && data[it].level < -50) params.circleRadius =
+                    constraintLayout.width / 5
+                else params.circleRadius = constraintLayout.width / 3
                 textView.layoutParams = params
+
                 listId.add(textView)
             }
         }

@@ -19,7 +19,7 @@ class WifiViewModel(private val wifiScanner: WifiScanner) : BaseViewModel() {
                 val wifiResult = wifiScanner.getWifiResult()
                 _scanResult.value = wifiResult
                 Log.d("wifi123", wifiResult.toString())
-                delay(10000)
+                delay(5000)
             }
         }
     }

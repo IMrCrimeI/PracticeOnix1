@@ -20,13 +20,13 @@ class MainScreen : BaseActivity<ActivityMainBinding>(R.layout.activity_main) {
     }
     private val requestPermissionLauncher =
         registerForActivityResult(
-            ActivityResultContracts.RequestPermission()
+            ActivityResultContracts.RequestMultiplePermissions()
         ) {}
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         requestPermissionLauncher.launch(
-            android.Manifest.permission.ACCESS_FINE_LOCATION
+            arrayOf(android.Manifest.permission.ACCESS_FINE_LOCATION, android.Manifest.permission.ACCESS_COARSE_LOCATION)
         )
     }
 }
