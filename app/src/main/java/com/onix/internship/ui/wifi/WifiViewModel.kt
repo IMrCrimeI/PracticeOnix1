@@ -17,9 +17,9 @@ class WifiViewModel(private val wifiScanner: WifiScanner) : BaseViewModel() {
         viewModelScope.launch {
             while (true) {
                 val wifiResult = wifiScanner.getWifiResult()
-                _scanResult.value = wifiResult
                 Log.d("wifi123", wifiResult.toString())
-                delay(5000)
+                _scanResult.value = wifiResult
+                delay(35000)
             }
         }
     }
