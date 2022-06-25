@@ -17,7 +17,9 @@ class SplashFragment : BaseFragment<SplashFragmentBinding>(R.layout.splash_fragm
     }
 
     private fun showLogInScreen() {
-        navigate(R.id.screenFragment, clearStack = true)
+        navigate(R.id.wifiFragment, clearStack = true)
     }
+
+
 
 }

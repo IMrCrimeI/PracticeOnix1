@@ -15,5 +15,4 @@ class SplashViewModel : BaseViewModel() {
             initEvent.postValue(true)
         }
     }
-
 }

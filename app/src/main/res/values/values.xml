@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <dimen name="first_circle_radius">160dp</dimen>
+    <dimen name="second_circle_radius">280dp</dimen>
+    <dimen name="third_circle_radius">360dp</dimen>
+
+</resources>

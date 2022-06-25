@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name">Internship Onix</string>
+    <string name="app_name">Wi-Fi Scanner</string>
 
     <string name="auth_user_name_hint">Enter your name</string>
     <string name="auth_email_hint">Enter email</string>
@@ -13,6 +13,11 @@
     <string name="err_empty_pass">Password is empty</string>
     <string name="err_empty_token">Token is empty</string>
 
-    <string name="menu_log_out">Log out</string>
     <string name="canvas">Canvas</string>
+    <string name="level">Level:</string>
+    <string name="name">Name:</string>
+    <string name="no_access_permission">Для работы приложения нужен доступ к вашей локации!</string>
+    <string name="first_ring">Первый круг: 80 – 100dB</string>
+    <string name="second_ring">Второй круг: 50 – 80dB</string>
+    <string name="third_ring">Третий круг: 0 – 50dB</string>
 </resources>
