@@ -15,7 +15,6 @@ import com.bumptech.glide.load.engine.GlideException
 import com.bumptech.glide.load.resource.gif.GifDrawable
 import com.bumptech.glide.request.RequestListener
 import com.bumptech.glide.request.RequestOptions
-import com.onix.internship.utils.AppUtils
 
 @BindingAdapter("circleImage", "placeholder", requireAll = false)
 fun ImageView.bindCircleImage(image: String?, placeholder: Drawable?) {
@@ -70,14 +69,6 @@ fun AppCompatTextView.bindUserName(name: String?) {
         "Unknown"
     } else name
     text = "$userName:"
-}
-
-@SuppressLint("SetTextI18n")
-@BindingAdapter("dateFormat")
-fun AppCompatTextView.bindDateTime(dateTime: String?) {
-    if (!dateTime.isNullOrBlank()) {
-        text = AppUtils.getDate(dateTime)
-    }
 }
 
 @BindingAdapter("onRefresh")
