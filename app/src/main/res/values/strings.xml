@@ -15,4 +15,6 @@
 
     <string name="menu_log_out">Log out</string>
     <string name="canvas">Canvas</string>
+    <string name="translate_text">Введиите текст для перевода…</string>
+    <string name="header">Translator</string>
 </resources>
