@@ -15,6 +15,7 @@ abstract class BaseFragment<T : ViewDataBinding>(@LayoutRes private val resId: I
 
     protected lateinit var binding: T
 
+
     protected abstract val viewModel: BaseViewModel
 
     protected open fun setObservers() {}
