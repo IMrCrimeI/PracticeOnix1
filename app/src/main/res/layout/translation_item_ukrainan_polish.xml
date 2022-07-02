@@ -3,10 +3,9 @@
     xmlns:app="http://schemas.android.com/apk/res-auto">
 
     <data>
-
         <variable
             name="text"
-            type="com.onix.internship.ui.data.DictionaryItem" />
+            type="com.onix.internship.data.DictionaryItem" />
 
     </data>
 
@@ -15,7 +14,7 @@
         android:layout_height="wrap_content">
 
         <TextView
-            android:id="@+id/translation_text"
+            android:id="@+id/history_kay"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_margin="8dp"

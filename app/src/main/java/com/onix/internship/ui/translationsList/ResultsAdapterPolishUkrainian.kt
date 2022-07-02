@@ -1,4 +1,4 @@
-package com.onix.internship.ui.translate
+package com.onix.internship.ui.translationsList
 
 import android.view.LayoutInflater
 import android.view.ViewGroup
@@ -6,10 +6,10 @@ import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
 import com.onix.internship.data.DictionaryItem
-import com.onix.internship.databinding.HistoryItemBinding
+import com.onix.internship.databinding.TranslationItemPolishUkrainanBinding
 
-class HistoryAdapter :
-    ListAdapter<DictionaryItem, HistoryAdapter.ViewHolder>(DiffCallBack()) {
+class ResultsAdapterPolishUkrainian :
+    ListAdapter<DictionaryItem, ResultsAdapterPolishUkrainian.ViewHolder>(DiffCallback()) {
 
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
         val item = getItem(position)
@@ -20,9 +20,10 @@ class HistoryAdapter :
         return ViewHolder.from(parent)
     }
 
-    class ViewHolder private constructor(val binding: HistoryItemBinding) :
+    class ViewHolder private constructor(
+        val binding: TranslationItemPolishUkrainanBinding
+    ) :
         RecyclerView.ViewHolder(binding.root) {
-
         fun bind(item: DictionaryItem) {
             binding.text = item
             binding.executePendingBindings()
@@ -31,7 +32,8 @@ class HistoryAdapter :
         companion object {
             fun from(parent: ViewGroup): ViewHolder {
                 val layoutInflater = LayoutInflater.from(parent.context)
-                val binding = HistoryItemBinding.inflate(layoutInflater, parent, false)
+                val binding =
+                    TranslationItemPolishUkrainanBinding.inflate(layoutInflater, parent, false)
                 return ViewHolder(binding)
             }
         }
@@ -39,10 +41,10 @@ class HistoryAdapter :
 }
 
 
-class DiffCallBack : DiffUtil.ItemCallback<DictionaryItem>() {
+class DiffCallback : DiffUtil.ItemCallback<DictionaryItem>() {
 
     override fun areItemsTheSame(oldItem: DictionaryItem, newItem: DictionaryItem): Boolean {
-        return oldItem.key == newItem.key
+        return oldItem.value == newItem.value
     }
 
 

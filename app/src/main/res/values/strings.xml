@@ -17,4 +17,8 @@
     <string name="canvas">Canvas</string>
     <string name="translate_text">Введиите текст для перевода…</string>
     <string name="header">Translator</string>
+    <string name="dash"> —> </string>
+    <string name="translate">Перевести</string>
+    <string name="uk_pol">Uk —> Pol</string>
+    <string name="pol_uk">Pol —> Uk</string>
 </resources>

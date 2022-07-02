@@ -8,21 +8,25 @@ import com.onix.internship.arch.BaseFragment
 import com.onix.internship.databinding.TranslationsListFragmentBinding
 import org.koin.androidx.viewmodel.ext.android.viewModel
 
-class TranslationsListFragment :
+class RusultsListFragment :
     BaseFragment<TranslationsListFragmentBinding>(R.layout.translations_list_fragment) {
-    override val viewModel: TranslationsListViewModel by viewModel()
-
+    override val viewModel: ResultsListViewModel by viewModel()
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        val translationsAdapter = TranslationsAdapter()
+        val resultsAdapter =
+            if (viewModel.languageChoice) {
+                ResultsAdapterPolishUkrainian()
+            } else {
+                ResultsAdapterUkrainianPolish()
+            }
 
         val recyclerView: RecyclerView = binding.textRecycler
-        recyclerView.adapter = translationsAdapter
+        recyclerView.adapter = resultsAdapter
 
         viewModel.translationLivaData.observe(viewLifecycleOwner) {
-            translationsAdapter.submitList(it)
+            resultsAdapter.submitList(it)
         }
 
     }

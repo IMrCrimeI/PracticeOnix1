@@ -1,11 +1,11 @@
 package com.onix.internship.ui.parser
 
 import android.content.Context
-import com.onix.internship.ui.data.DictionaryItem
+import com.onix.internship.data.DictionaryItem
 import org.xmlpull.v1.XmlPullParser
 import org.xmlpull.v1.XmlPullParserFactory
 
-class DictionaryXmlParser(val context: Context) {
+class DictionaryXmlParser(private val context: Context) {
 
     fun parseDict(): List<DictionaryItem> {
         val list = arrayListOf<DictionaryItem>()
@@ -28,10 +28,11 @@ class DictionaryXmlParser(val context: Context) {
                 }
                 XmlPullParser.TEXT -> {
                     text = parser.text
-                    text = text
-                        .replace("\"", "")
-                        .replace("\n", "")
-                        .replace("  ", " - ")
+                    val index = text.indexOf(" ")
+                    text = text.substring(index + 1)
+                        .trim()
+                        .replace("\"","")
+                        .lowercase()
                 }
                 XmlPullParser.END_TAG -> when (tag) {
                     "k" -> key = text

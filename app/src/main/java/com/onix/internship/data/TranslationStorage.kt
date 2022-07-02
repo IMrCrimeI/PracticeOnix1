@@ -1,11 +1,11 @@
-package com.onix.internship.ui.data
+package com.onix.internship.data
 
 class TranslationStorage {
     private var dictionary = listOf<DictionaryItem>()
     private var searchingResults = mutableListOf<DictionaryItem>()
     private var searchingHistory = mutableListOf<DictionaryItem>()
 
-    var choice = ""
+    var choice = false
 
     fun saveDictionary(list: List<DictionaryItem>) {
         dictionary = list
@@ -29,13 +29,13 @@ class TranslationStorage {
         }
         searchingResults.firstOrNull()?.let {
             if (searchingHistory.contains(searchingResults.first())) {
-                searchingHistory
+                searchingHistory.remove(it)
+                searchingHistory.add(it)
             } else {
                 searchingHistory.add(it)
             }
         }
         return searchingHistory
-
     }
 
     fun clearResults() {

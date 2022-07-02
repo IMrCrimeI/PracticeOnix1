@@ -1,13 +1,13 @@
-package com.onix.internship.ui.data
+package com.onix.internship.data
 
 import com.onix.internship.ui.parser.DictionaryXmlParser
 
-class Bind(
+class Transfer(
     private val dictionaryXmlParser: DictionaryXmlParser,
     private val translationStorage: TranslationStorage
 ) {
 
-    fun bindData() {
+    fun passDictionary() {
         translationStorage.saveDictionary(dictionaryXmlParser.parseDict())
     }
 }

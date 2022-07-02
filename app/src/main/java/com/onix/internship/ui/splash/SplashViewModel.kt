@@ -2,17 +2,17 @@ package com.onix.internship.ui.splash
 
 import com.onix.internship.arch.BaseViewModel
 import com.onix.internship.arch.lifecycle.SingleLiveEvent
-import com.onix.internship.ui.data.Bind
+import com.onix.internship.data.Transfer
 import kotlinx.coroutines.delay
 
-class SplashViewModel(bind: Bind) : BaseViewModel() {
+class SplashViewModel(transfer: Transfer) : BaseViewModel() {
 
     val initEvent = SingleLiveEvent<Boolean>()
 
     init {
         onLoading(true)
         launch {
-            bind.bindData()
+            transfer.passDictionary()
             delay(1500)
             initEvent.postValue(true)
         }

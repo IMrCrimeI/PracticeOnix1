@@ -1,13 +1,12 @@
 package com.onix.internship.di
 
+import com.onix.internship.data.Transfer
+import com.onix.internship.data.TranslationStorage
 import com.onix.internship.ui.parser.DictionaryXmlParser
-import com.onix.internship.ui.data.Bind
-import com.onix.internship.ui.data.TranslationStorage
-import org.koin.android.ext.koin.androidApplication
 import org.koin.dsl.module
 
 val providerModule = module {
-    single { DictionaryXmlParser(context = androidApplication()) }
-    single { Bind(get(), get()) }
+    single { DictionaryXmlParser(get()) }
+    single { Transfer(get(), get()) }
     single { TranslationStorage() }
 }

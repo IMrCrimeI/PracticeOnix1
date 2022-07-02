@@ -13,12 +13,12 @@
         android:name="com.onix.internship.ui.translate.TranslateFragment"
         android:label="TranslateFragment" >
         <action
-            android:id="@+id/action_translateFragment_to_translationsListFragment"
-            app:destination="@id/translationsListFragment" />
+            android:id="@+id/action_translateFragment_to_rusultsListFragment"
+            app:destination="@id/rusultsListFragment" />
     </fragment>
     <fragment
-        android:id="@+id/translationsListFragment"
-        android:name="com.onix.internship.ui.translationsList.TranslationsListFragment"
-        android:label="TranslationsListFragment" />
+        android:id="@+id/rusultsListFragment"
+        android:name="com.onix.internship.ui.translationsList.RusultsListFragment"
+        android:label="RusultsListFragment" />
 
 </navigation>

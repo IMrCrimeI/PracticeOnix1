@@ -1,4 +1,4 @@
-package com.onix.internship.ui.data
+package com.onix.internship.data
 
 data class DictionaryItem(
     val key: String,

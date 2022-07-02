@@ -5,6 +5,10 @@
     <data>
 
         <variable
+            name="sale"
+            type="com.onix.internship.data.TranslationStorage" />
+
+        <variable
             name="viewModel"
             type="com.onix.internship.ui.translate.TranslateViewModel" />
     </data>
@@ -19,15 +23,17 @@
             android:layout_height="wrap_content"
             android:text="@string/header"
             android:textSize="42sp"
-            app:layout_constraintBottom_toTopOf="@+id/spin_select_language"
+            app:layout_constraintBottom_toTopOf="@+id/select_language"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
 
-        <Spinner
-            android:id="@+id/spin_select_language"
+        <Button
+            android:id="@+id/select_language"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:onClick="@{() -> viewModel.changeLanguage()}"
+            android:text="@{viewModel.language}"
             app:layout_constraintBottom_toTopOf="@+id/input_field"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
@@ -41,18 +47,18 @@
             android:autofillHints="phone"
             android:hint="@string/translate_text"
             android:inputType="text"
-            android:text="@={viewModel.key}"
+            android:text="@={viewModel.model.kay}"
             app:layout_constraintBottom_toTopOf="@+id/translate_button"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/spin_select_language" />
+            app:layout_constraintTop_toBottomOf="@+id/select_language" />
 
         <Button
             android:id="@+id/translate_button"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:onClick="@{() -> viewModel.findTranslation()}"
-            android:text="Перевести"
+            android:text="@string/translate"
             app:layout_constraintBottom_toTopOf="@+id/history_recycler"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
