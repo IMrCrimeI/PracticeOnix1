@@ -8,5 +8,17 @@
         android:id="@+id/splashFragment"
         android:name="com.onix.internship.ui.splash.SplashFragment"
         android:label="SplashFragment" />
+    <fragment
+        android:id="@+id/translateFragment"
+        android:name="com.onix.internship.ui.translate.TranslateFragment"
+        android:label="TranslateFragment" >
+        <action
+            android:id="@+id/action_translateFragment_to_rusultsListFragment"
+            app:destination="@id/rusultsListFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/rusultsListFragment"
+        android:name="com.onix.internship.ui.translationsList.RusultsListFragment"
+        android:label="RusultsListFragment" />
 
 </navigation>

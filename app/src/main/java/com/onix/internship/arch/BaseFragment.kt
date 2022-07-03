@@ -13,8 +13,8 @@ import com.onix.internship.arch.ext.hideKeyboard
 
 abstract class BaseFragment<T : ViewDataBinding>(@LayoutRes private val resId: Int) : Fragment() {
 
-    private lateinit var binding: T
-        private set
+    protected lateinit var binding: T
+
 
     protected abstract val viewModel: BaseViewModel
 
