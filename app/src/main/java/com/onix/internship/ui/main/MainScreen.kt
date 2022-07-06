@@ -30,8 +30,8 @@ class MainScreen : BaseActivity<ActivityMainBinding>(R.layout.activity_main) {
         mediaPlayer.isLooping = true
 
         mediaPlayer.start()
-        viewModel.music.observe(this){
-            if (it){
+        viewModel.music.observe(this) {
+            if (it) {
                 mediaPlayer.pause()
             } else mediaPlayer.start()
         }
@@ -44,7 +44,11 @@ class MainScreen : BaseActivity<ActivityMainBinding>(R.layout.activity_main) {
 
     override fun onRestart() {
         super.onRestart()
-        mediaPlayer.start()
+        viewModel.music.observe(this) {
+            if (!it) {
+                mediaPlayer.start()
+            }
+        }
     }
 
     override fun onDestroy() {
