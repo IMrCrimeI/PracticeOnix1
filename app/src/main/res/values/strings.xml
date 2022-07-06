@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name">Internship Onix</string>
+    <string name="app_name">The Question</string>
 
     <string name="auth_user_name_hint">Enter your name</string>
     <string name="auth_email_hint">Enter email</string>
@@ -15,4 +15,14 @@
 
     <string name="menu_log_out">Log out</string>
     <string name="canvas">Canvas</string>
+
+    <string name="start">Начать</string>
+    <string name="exit">Выход</string>
+    <string name="game_name">The Question</string>
+    <string name="to_ask_her_right_away">Спросить её прямо сейчас</string>
+    <string name="to_ask_her_later">Спросить её потом</string>
+    <string name="its_a_video_game">Это видеоигра</string>
+    <string name="its_an_interactive_book">Это интерактивная книга</string>
+    <string name="on_off">Музыка on/off</string>
+
 </resources>

@@ -78,3 +78,8 @@ fun SwipeRefreshLayout.onRefresh(callback: () -> Unit) {
         isRefreshing = false
     }
 }
+
+@BindingAdapter("changeSrc")
+fun ImageView.changeSrc(resId: Int){
+    setImageResource(resId)
+}

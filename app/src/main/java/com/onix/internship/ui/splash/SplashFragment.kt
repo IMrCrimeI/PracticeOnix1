@@ -12,12 +12,12 @@ class SplashFragment : BaseFragment<SplashFragmentBinding>(R.layout.splash_fragm
 
     override fun setObservers() {
         viewModel.initEvent.observe(this) {
-            if (it) showLogInScreen()
+            if (it) showMainMenuScreen()
         }
     }
 
-    private fun showLogInScreen() {
-        navigate(R.id.translateFragment, clearStack = true)
+    private fun showMainMenuScreen() {
+        navigate(R.id.mainMenu, clearStack = true)
     }
 
 }
