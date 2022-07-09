@@ -1,0 +1,109 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <data>
+
+        <import type="android.view.View" />
+
+        <variable
+            name="viewModel"
+            type="com.onix.internship.ui.game.secondScene.SecondSceneViewModel" />
+    </data>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <ImageView
+            android:id="@+id/secondPlayScreenBg"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:scaleType="centerCrop"
+            app:changeSrc="@{viewModel.bgId}"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <ImageView
+            android:id="@+id/secondCharacterImg"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            app:changeSrc="@{viewModel.imageId}"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <androidx.constraintlayout.widget.Guideline
+            android:id="@+id/secondTopDivider"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            app:layout_constraintGuide_percent="0.75" />
+
+        <ImageView
+            android:id="@+id/secondTextBox"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:onClick="@{() -> viewModel.changeText()}"
+            android:src="@drawable/text_box"
+            app:layout_constraintBottom_toBottomOf="@+id/secondPlayScreenBg"
+            app:layout_constraintEnd_toEndOf="@id/secondPlayScreenBg"
+            app:layout_constraintStart_toStartOf="@+id/secondPlayScreenBg"
+            app:layout_constraintTop_toBottomOf="@+id/secondTopDivider" />
+
+        <TextView
+            android:id="@+id/secondAgreeButton"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="16dp"
+            android:background="@drawable/choice_idle_background"
+            android:gravity="center"
+            android:onClick="@{() -> viewModel.checkBook(2)}"
+            android:text="@string/its_a_video_game"
+            android:textColor="@color/white"
+            android:visibility="@{viewModel.visible? View.VISIBLE : View.GONE}"
+            app:layout_constraintBottom_toTopOf="@+id/secondDisagreeButton"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintVertical_chainStyle="packed" />
+
+        <TextView
+            android:id="@+id/secondDisagreeButton"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:background="@drawable/choice_idle_background"
+            android:gravity="center"
+            android:onClick="@{() -> viewModel.checkBook(1)}"
+            android:text="@string/its_an_interactive_book"
+            android:textColor="@color/white"
+            android:visibility="@{viewModel.visible? View.VISIBLE : View.GONE}"
+            app:layout_constraintBottom_toTopOf="@+id/secondPlayText"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/secondAgreeButton" />
+
+        <TextView
+            android:id="@+id/secondPlayText"
+            android:layout_width="400dp"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:text="@{viewModel.text}"
+            android:textColor="@color/white"
+            app:layout_constraintBottom_toBottomOf="@+id/secondTextBox"
+            app:layout_constraintEnd_toEndOf="@+id/secondTextBox"
+            app:layout_constraintStart_toStartOf="@+id/secondTextBox"
+            app:layout_constraintTop_toTopOf="@+id/secondTextBox" />
+
+        <ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:onClick="@{() -> viewModel.openSettings()}"
+            android:src="@drawable/ic_settings"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</layout>

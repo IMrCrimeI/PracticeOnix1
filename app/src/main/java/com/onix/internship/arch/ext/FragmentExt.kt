@@ -30,10 +30,7 @@ fun Fragment.navigate(@IdRes resId: Int, args: Bundle? = null, clearStack: Boole
         }
     }.navigate(resId, args)
 }
-fun Fragment.navigate(directions: NavDirections, clearStack: Boolean = false) {
-    findNavController().apply {
-        if (clearStack) {
-            popBackStack()
-        }
-    }.navigate(directions)
+
+fun Fragment.navigate(directions: NavDirections) {
+    findNavController().navigate(directions)
 }

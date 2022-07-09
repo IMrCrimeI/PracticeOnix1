@@ -5,26 +5,39 @@
 
     <data>
 
+        <variable
+            name="viewModel"
+            type="com.onix.internship.ui.main.MainViewModel" />
     </data>
 
-    <FrameLayout
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        tools:context=".ui.main.MainScreen">
 
-        <androidx.fragment.app.FragmentContainerView
-            android:id="@+id/homeHostNavFragment"
-            android:name="androidx.navigation.fragment.NavHostFragment"
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <FrameLayout
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            app:defaultNavHost="true"
-            app:navGraph="@navigation/home" />
+            tools:context=".ui.main.MainScreen">
 
-        <View
+            <androidx.fragment.app.FragmentContainerView
+                android:id="@+id/homeHostNavFragment"
+                android:name="androidx.navigation.fragment.NavHostFragment"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                app:defaultNavHost="true"
+                app:navGraph="@navigation/home" />
+
+        </FrameLayout>
+
+        <CheckBox
             android:layout_width="wrap_content"
-            android:layout_height="wrap_content">
-
-        </View>
-
-    </FrameLayout>
+            android:layout_height="wrap_content"
+            android:onCheckedChanged="@{(view, checked) -> viewModel.chekMusic(checked)}"
+            android:text="@string/on_off"
+            android:textColor="@color/white"
+            android:textSize="12sp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintStart_toStartOf="parent" />
+    </androidx.constraintlayout.widget.ConstraintLayout>
 </layout>

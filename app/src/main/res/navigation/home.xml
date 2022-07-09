@@ -9,8 +9,81 @@
         android:name="com.onix.internship.ui.splash.SplashFragment"
         android:label="SplashFragment" />
     <fragment
-        android:id="@+id/translateFragment"
-        android:name="com.onix.internship.ui.translate.TranslateFragment"
-        android:label="TranslateFragment" />
+        android:id="@+id/firstScene"
+        android:name="com.onix.internship.ui.game.firstScene.FirstScene"
+        android:label="FirstScene">
+        <action
+            android:id="@+id/action_firstScene_to_secondScene"
+            app:destination="@id/secondScene"
+            app:popUpTo="@id/firstScene"
+            app:popUpToInclusive="true" />
+        <action
+            android:id="@+id/action_firstScene_to_secondSceneAlternate"
+            app:destination="@id/secondSceneAlternate"
+            app:popUpTo="@id/firstScene"
+            app:popUpToInclusive="true" />
+        <action
+            android:id="@+id/action_firstScene_to_settingsDialogFragment"
+            app:destination="@id/settingsDialogFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/secondSceneAlternate"
+        android:name="com.onix.internship.ui.game.secondSceneAlternate.SecondSceneAlternate"
+        android:label="SecondSceneAlternate">
+        <action
+            android:id="@+id/action_secondSceneAlternate_to_mainMenu2"
+            app:destination="@id/mainMenu"
+            app:popUpTo="@id/secondSceneAlternate"
+            app:popUpToInclusive="true" />
+        <action
+            android:id="@+id/action_secondSceneAlternate_to_settingsDialogFragment"
+            app:destination="@id/settingsDialogFragment" />
+    </fragment>
+    <dialog
+        android:id="@+id/settingsDialogFragment"
+        android:name="com.onix.internship.ui.game.settingsDialogFragment.SettingsDialogFragment"
+        android:label="SettingsDialogFragment" >
+        <action
+            android:id="@+id/action_settingsDialogFragment_to_mainMenu"
+            app:destination="@id/mainMenu"
+            app:popUpTo="@id/settingsDialogFragment"
+            app:popUpToInclusive="true" />
+    </dialog>
+    <fragment
+        android:id="@+id/thirdScene"
+        android:name="com.onix.internship.ui.game.thirdScene.ThirdScene"
+        android:label="ThirdScene">
+        <action
+            android:id="@+id/action_thirdScene_to_mainMenu"
+            app:destination="@id/mainMenu"
+            app:popUpTo="@id/thirdScene"
+            app:popUpToInclusive="true" />
+        <action
+            android:id="@+id/action_thirdScene_to_settingsDialogFragment"
+            app:destination="@id/settingsDialogFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/mainMenu"
+        android:name="com.onix.internship.ui.game.mainMenu.MainMenu"
+        android:label="MainMenu">
+        <action
+            android:id="@+id/action_mainMenu_to_firstScene"
+            app:destination="@id/firstScene"
+            app:popUpTo="@id/mainMenu"
+            app:popUpToInclusive="true" />
+    </fragment>
+    <fragment
+        android:id="@+id/secondScene"
+        android:name="com.onix.internship.ui.game.secondScene.SecondScene"
+        android:label="SecondScene">
+        <action
+            android:id="@+id/action_secondScene_to_thirdScene"
+            app:destination="@id/thirdScene"
+            app:popUpTo="@id/secondScene"
+            app:popUpToInclusive="true" />
+        <action
+            android:id="@+id/action_secondScene_to_settingsDialogFragment"
+            app:destination="@id/settingsDialogFragment" />
+    </fragment>
 
 </navigation>

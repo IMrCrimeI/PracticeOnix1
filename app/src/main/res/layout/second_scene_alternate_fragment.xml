@@ -1,0 +1,66 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <data>
+
+        <variable
+            name="viewModel"
+            type="com.onix.internship.ui.game.secondSceneAlternate.SecondSceneAlternateViewModel" />
+    </data>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <ImageView
+            android:id="@+id/sAlPlayScreenBg"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:background="#E6000000"
+            android:scaleType="centerCrop"
+            app:changeSrc="@{viewModel.bgId}"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <androidx.constraintlayout.widget.Guideline
+            android:id="@+id/sAlTopDivider"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            app:layout_constraintGuide_percent="0.75" />
+
+        <ImageView
+            android:id="@+id/sAlTextBox"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:onClick="@{() -> viewModel.changeText()}"
+            android:src="@drawable/text_box"
+            app:layout_constraintBottom_toBottomOf="@+id/sAlPlayScreenBg"
+            app:layout_constraintEnd_toEndOf="@id/sAlPlayScreenBg"
+            app:layout_constraintStart_toStartOf="@+id/sAlPlayScreenBg"
+            app:layout_constraintTop_toBottomOf="@+id/sAlTopDivider" />
+
+        <TextView
+            android:id="@+id/sAlPlayText"
+            android:layout_width="400dp"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:text="@{viewModel.text}"
+            android:textColor="@color/white"
+            app:layout_constraintBottom_toBottomOf="@+id/sAlTextBox"
+            app:layout_constraintEnd_toEndOf="@+id/sAlTextBox"
+            app:layout_constraintStart_toStartOf="@+id/sAlTextBox"
+            app:layout_constraintTop_toTopOf="@+id/sAlTextBox" />
+
+        <ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:onClick="@{() -> viewModel.openSettings()}"
+            android:src="@drawable/ic_settings"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</layout>

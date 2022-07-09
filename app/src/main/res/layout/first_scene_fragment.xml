@@ -1,0 +1,112 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <data>
+
+        <import type="android.view.View" />
+
+        <variable
+            name="viewModel"
+            type="com.onix.internship.ui.game.firstScene.FirstSceneViewModel" />
+    </data>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <ImageView
+            android:id="@+id/firstPlayScreenBg"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:background="@drawable/bg_lecture_hall"
+            android:scaleType="centerCrop"
+            app:changeSrc="@{viewModel.bgId}"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <ImageView
+            android:id="@+id/firstCharacterImg"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            app:changeSrc="@{viewModel.imageId}"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <androidx.constraintlayout.widget.Guideline
+            android:id="@+id/firstTopDivider"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            app:layout_constraintGuide_percent="0.75" />
+
+        <ImageView
+            android:id="@+id/firstTextBox"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:onClick="@{() -> viewModel.changeText()}"
+
+            android:src="@drawable/text_box"
+            app:layout_constraintBottom_toBottomOf="@+id/firstPlayScreenBg"
+            app:layout_constraintEnd_toEndOf="@id/firstPlayScreenBg"
+            app:layout_constraintHorizontal_bias="0.0"
+            app:layout_constraintStart_toStartOf="@+id/firstPlayScreenBg"
+            app:layout_constraintTop_toBottomOf="@+id/firstTopDivider" />
+
+        <TextView
+            android:id="@+id/firstAgreeButton"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="16dp"
+            android:background="@drawable/choice_idle_background"
+            android:gravity="center"
+            android:onClick="@{() -> viewModel.goToNextFragment(true)}"
+            android:text="@string/to_ask_her_right_away"
+            android:textColor="@color/white"
+            android:visibility="@{viewModel.visible? View.VISIBLE : View.GONE}"
+            app:layout_constraintBottom_toTopOf="@+id/firstDisagreeButton"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintVertical_chainStyle="packed" />
+
+        <TextView
+            android:id="@+id/firstDisagreeButton"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:background="@drawable/choice_idle_background"
+            android:gravity="center"
+            android:onClick="@{() -> viewModel.goToNextFragment(false)}"
+            android:text="@string/to_ask_her_later"
+            android:textColor="@color/white"
+            android:visibility="@{viewModel.visible? View.VISIBLE : View.GONE}"
+            app:layout_constraintBottom_toTopOf="@+id/firstPlayText"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/firstAgreeButton" />
+
+        <TextView
+            android:id="@+id/firstPlayText"
+            android:layout_width="400dp"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:text="@{viewModel.text}"
+            android:textColor="@color/white"
+            app:layout_constraintBottom_toBottomOf="@+id/firstTextBox"
+            app:layout_constraintEnd_toEndOf="@+id/firstTextBox"
+            app:layout_constraintStart_toStartOf="@+id/firstTextBox"
+            app:layout_constraintTop_toTopOf="@+id/firstTextBox" />
+
+        <ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:onClick="@{() -> viewModel.openSettings()}"
+            android:src="@drawable/ic_settings"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</layout>
