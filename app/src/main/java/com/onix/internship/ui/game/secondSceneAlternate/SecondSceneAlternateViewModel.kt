@@ -5,10 +5,10 @@ import androidx.lifecycle.MutableLiveData
 import com.onix.internship.R
 import com.onix.internship.arch.BaseViewModel
 import com.onix.internship.arch.lifecycle.SingleLiveEvent
-import com.onix.internship.data.DialogueList
+import com.onix.internship.data.GameResources
 
-class SecondSceneAlternateViewModel(private val dialogueList: DialogueList) : BaseViewModel() {
-    private val _text = MutableLiveData(dialogueList.laterDialog.firstOrNull())
+class SecondSceneAlternateViewModel(private val gameResources: GameResources) : BaseViewModel() {
+    private val _text = MutableLiveData(gameResources.laterDialog.firstOrNull())
     val text: LiveData<String?> = _text
 
     private val _bgId = MutableLiveData(R.drawable.bg_uni)
@@ -22,8 +22,8 @@ class SecondSceneAlternateViewModel(private val dialogueList: DialogueList) : Ba
         when (counter) {
             1 -> _bgId.value = null
         }
-        if (counter != dialogueList.laterDialog.size) {
-            _text.value = dialogueList.laterDialog[counter]
+        if (counter != gameResources.laterDialog.size) {
+            _text.value = gameResources.laterDialog[counter]
             counter++
         } else goToHome.value = true
     }

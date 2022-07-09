@@ -1,8 +1,10 @@
 package com.onix.internship.di
 
-import com.onix.internship.data.DialogueList
+import com.onix.internship.data.GameResources
+import com.onix.internship.data.MediaPlayerWrapper
 import org.koin.dsl.module
 
 val providerModule = module {
-    single { DialogueList() }
+    single { GameResources(get()) }
+    single { MediaPlayerWrapper(get()) }
 }

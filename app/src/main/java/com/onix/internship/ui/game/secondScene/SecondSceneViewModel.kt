@@ -5,16 +5,16 @@ import androidx.lifecycle.MutableLiveData
 import com.onix.internship.R
 import com.onix.internship.arch.BaseViewModel
 import com.onix.internship.arch.lifecycle.SingleLiveEvent
-import com.onix.internship.data.DialogueList
+import com.onix.internship.data.GameResources
 
-class SecondSceneViewModel(private val dialogueList: DialogueList) : BaseViewModel() {
-    private val _text = MutableLiveData(dialogueList.rightAwayDialog.firstOrNull())
+class SecondSceneViewModel(private val gameResources: GameResources) : BaseViewModel() {
+    private val _text = MutableLiveData(gameResources.rightAwayDialog.firstOrNull())
     val text: LiveData<String?> = _text
 
     private val _bgId = MutableLiveData(R.drawable.bg_uni)
     val bgId: LiveData<Int> = _bgId
 
-    private val _imageId = MutableLiveData(R.drawable.sylvie_green_smile)
+    private val _imageId = MutableLiveData(gameResources.characterId[1])
     val imageId: LiveData<Int> = _imageId
 
     val openSettingFragment = SingleLiveEvent<Boolean>()
@@ -28,29 +28,29 @@ class SecondSceneViewModel(private val dialogueList: DialogueList) : BaseViewMod
     fun changeText() {
         when (counter) {
             5 -> {
-                _bgId.value = R.drawable.bg_meadow
-                _imageId.value = null
+                _bgId.value = gameResources.backGroundId[4].resId
+                _imageId.value = gameResources.characterId[7]
             }
-            9 -> _imageId.value = R.drawable.sylvie_green_smile
-            13 -> _imageId.value = R.drawable.sylvie_green_surprised
+            9 -> _imageId.value = gameResources.characterId[1]
+            13 -> _imageId.value = gameResources.characterId[2]
             15 -> {
-                _imageId.value = R.drawable.sylvie_green_smile
+                _imageId.value = gameResources.characterId[1]
                 visible.value = true
             }
         }
-        if (counter != dialogueList.rightAwayDialog.size) {
-            _text.value = dialogueList.rightAwayDialog[counter]
+        if (counter != gameResources.rightAwayDialog.size) {
+            _text.value = gameResources.rightAwayDialog[counter]
             counter++
         }
 
-        if (bookCounter != dialogueList.bookIsChoiceDialog.size) {
+        if (bookCounter != gameResources.bookIsChoiceDialog.size) {
             when (bookIsChoice) {
                 1 -> {
-                    _text.value = dialogueList.bookIsChoiceDialog[bookCounter]
+                    _text.value = gameResources.bookIsChoiceDialog[bookCounter]
                     bookCounter++
                 }
                 2 -> {
-                    _text.value = dialogueList.bookIsNotChoiceDialog[bookCounter]
+                    _text.value = gameResources.bookIsNotChoiceDialog[bookCounter]
                     bookCounter++
                 }
             }

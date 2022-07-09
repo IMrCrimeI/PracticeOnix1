@@ -1,14 +1,14 @@
 package com.onix.internship.ui.game.thirdScene
 
+
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
-import com.onix.internship.R
 import com.onix.internship.arch.BaseViewModel
 import com.onix.internship.arch.lifecycle.SingleLiveEvent
-import com.onix.internship.data.DialogueList
+import com.onix.internship.data.GameResources
 
-class ThirdSceneViewModel(private val dialogueList: DialogueList) : BaseViewModel() {
-    private val _text = MutableLiveData(dialogueList.merryDialog.firstOrNull())
+class ThirdSceneViewModel(private val gameResources: GameResources) : BaseViewModel() {
+    private val _text = MutableLiveData(gameResources.merryDialog.firstOrNull())
     val text: LiveData<String?> = _text
 
     private val _bgId = MutableLiveData<Int>()
@@ -23,21 +23,21 @@ class ThirdSceneViewModel(private val dialogueList: DialogueList) : BaseViewMode
 
     fun changeText() {
         when (counter) {
-            1 -> _bgId.value = R.drawable.bg_club
-            5 -> _imageId.value = R.drawable.sylvie_blue_normal
-            7 -> _imageId.value = R.drawable.sylvie_blue_giggle
-            9 -> _imageId.value = R.drawable.sylvie_blue_surprised
-            11 -> _imageId.value = R.drawable.sylvie_blue_smile
-            14 -> _imageId.value = R.drawable.sylvie_blue_giggle
-            15 -> _imageId.value = R.drawable.sylvie_blue_normal
-            19 -> _imageId.value = R.drawable.sylvie_blue_giggle
+            1 -> _bgId.value = gameResources.backGroundId[3].resId
+            5 -> _imageId.value = gameResources.characterId[3]
+            7 -> _imageId.value = gameResources.characterId[6]
+            9 -> _imageId.value = gameResources.characterId[5]
+            11 -> _imageId.value = gameResources.characterId[4]
+            14 -> _imageId.value = gameResources.characterId[6]
+            15 -> _imageId.value = gameResources.characterId[3]
+            19 -> _imageId.value = gameResources.characterId[6]
             20 -> {
                 _imageId.value = null
                 _bgId.value = null
             }
         }
-        if (counter != dialogueList.merryDialog.size) {
-            _text.value = dialogueList.merryDialog[counter]
+        if (counter != gameResources.merryDialog.size) {
+            _text.value = gameResources.merryDialog[counter]
             counter++
         } else goToHome.value = true
     }

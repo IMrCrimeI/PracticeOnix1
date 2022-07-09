@@ -1,6 +1,5 @@
 package com.onix.internship.ui.main
 
-import android.media.MediaPlayer
 import android.os.Bundle
 import androidx.core.view.WindowCompat
 import androidx.core.view.WindowInsetsCompat
@@ -9,11 +8,16 @@ import androidx.navigation.NavController
 import androidx.navigation.fragment.NavHostFragment
 import com.onix.internship.R
 import com.onix.internship.arch.BaseActivity
+import com.onix.internship.data.MediaPlayerWrapper
 import com.onix.internship.databinding.ActivityMainBinding
+import org.koin.android.ext.android.inject
 import org.koin.androidx.viewmodel.ext.android.viewModel
 
-class MainScreen : BaseActivity<ActivityMainBinding>(R.layout.activity_main) {
-    private var mediaPlayer: MediaPlayer = MediaPlayer()
+class MainScreen :
+    BaseActivity<ActivityMainBinding>(R.layout.activity_main) {
+
+    private val mediaPlayer: MediaPlayerWrapper by inject()
+
     override val viewModel: MainViewModel by viewModel()
 
     override val navController: NavController by lazy {
@@ -26,34 +30,31 @@ class MainScreen : BaseActivity<ActivityMainBinding>(R.layout.activity_main) {
         super.onCreate(savedInstanceState)
         hideSystemBars()
         binding.viewModel = viewModel
-        mediaPlayer = MediaPlayer.create(applicationContext, R.raw.illurock)
-        mediaPlayer.isLooping = true
-
-        mediaPlayer.start()
+        mediaPlayer.setUpPlayer()
         viewModel.music.observe(this) {
             if (it) {
-                mediaPlayer.pause()
-            } else mediaPlayer.start()
+                mediaPlayer.stopMusic()
+            } else mediaPlayer.playMusic()
         }
     }
 
     override fun onPause() {
         super.onPause()
-        mediaPlayer.pause()
+        mediaPlayer.stopMusic()
     }
 
     override fun onRestart() {
         super.onRestart()
         viewModel.music.observe(this) {
             if (!it) {
-                mediaPlayer.start()
+                mediaPlayer.playMusic()
             }
         }
     }
 
     override fun onDestroy() {
         super.onDestroy()
-        mediaPlayer.release()
+        mediaPlayer.destroyMusic()
     }
 
     private fun hideSystemBars() {

@@ -15,7 +15,7 @@ val viewModelModule = module {
     viewModel { SplashViewModel() }
     viewModel { MainViewModel() }
     viewModel { MainMenuViewModel() }
-    viewModel { FirstSceneViewModel(get()) }
+    viewModel { FirstSceneViewModel(get())}
     viewModel { SecondSceneViewModel(get()) }
     viewModel { ThirdSceneViewModel(get()) }
     viewModel { SecondSceneAlternateViewModel(get()) }
