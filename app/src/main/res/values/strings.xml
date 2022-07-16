@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name">Internship Onix</string>
+    <string name="app_name">Calendar Task</string>
 
     <string name="auth_user_name_hint">Enter your name</string>
     <string name="auth_email_hint">Enter email</string>
@@ -15,4 +15,33 @@
 
     <string name="menu_log_out">Log out</string>
     <string name="canvas">Canvas</string>
+    <string name="align_left">Align left</string>
+    <string name="center">Center</string>
+    <string name="straight">Straight</string>
+    <string name="align_right">Align right</string>
+    <string name="list">List</string>
+    <string name="nc">Приносим свои извенения!\nCтраница в разработке.</string>
+    <string name="new_tag">New tag</string>
+    <string name="cancel">Cancel</string>
+    <string name="save">Save</string>
+    <string name="search_for">Search for</string>
+    <string name="task">Task</string>
+    <string name="calendar">Calendar</string>
+    <string name="today">Today</string>
+    <string name="you_dont_have_tasks">You don’t have any schedule today.\nTap the plus button to create new to-do.</string>
+    <string name="add_task">Add Task</string>
+    <string name="tittle">Tittle</string>
+    <string name="data">Data</string>
+    <string name="enter_data">Enter data</string>
+    <string name="time">Time</string>
+    <string name="enter_from_time">Enter from time</string>
+    <string name="enter_to_time">Enter to time</string>
+    <string name="description">Description</string>
+    <string name="type">Type</string>
+    <string name="personal">Personal</string>
+    <string name="privat">Private</string>
+    <string name="secret">Secret</string>
+    <string name="tags">Tags</string>
+    <string name="add_new_tag">+ Add new tag</string>
+    <string name="create">Create</string>
 </resources>
