@@ -8,7 +8,10 @@
     <color name="black">#FF000000</color>
     <color name="white">#FFFFFFFF</color>
 
-    <color name="colorPaint">#FF000000</color>
-    <color name="colorBackground">#FFFFFFFF</color>
+    <color name="hex">#5B67CA</color>
+    <color name="hex_black">#10275A</color>
+    <color name="hex_lite">#c6cedd</color>
+    <color name="hex_medium">#8A8AB2</color>
+    <color name="hex_calendar">#a8aedf</color>
 
 </resources>

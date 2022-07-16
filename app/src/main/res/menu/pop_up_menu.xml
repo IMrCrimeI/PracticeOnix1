@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+    <item
+        android:id="@+id/alignLeft"
+        android:icon="@drawable/align_left"
+        android:title="@string/align_left" />
+
+    <item
+        android:id="@+id/center"
+        android:icon="@drawable/center"
+        android:title="@string/center" />
+
+    <item
+        android:id="@+id/straight"
+        android:icon="@drawable/straight"
+        android:title="@string/straight" />
+
+    <item
+        android:id="@+id/alignRight"
+        android:icon="@drawable/align_right"
+        android:title="@string/align_right" />
+
+    <item
+        android:id="@+id/list"
+        android:icon="@drawable/list"
+        android:title="@string/list" />
+</menu>

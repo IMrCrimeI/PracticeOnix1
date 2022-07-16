@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <style name="SearchBar" parent="Widget.MaterialComponents.TextInputLayout.OutlinedBox">
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:layout_marginStart">24dp</item>
+        <item name="android:layout_marginEnd">24dp</item>
+        <item name="android:enabled">false</item>
+        <item name="android:textColorHint">@color/hex_lite</item>
+        <item name="boxBackgroundColor">#99F6F6F6</item>
+        <item name="boxCornerRadiusBottomEnd">15dp</item>
+        <item name="boxCornerRadiusBottomStart">15dp</item>
+        <item name="boxCornerRadiusTopEnd">15dp</item>
+        <item name="boxCornerRadiusTopStart">15dp</item>
+        <item name="boxStrokeWidth">0dp</item>
+        <item name="startIconTint">@color/hex_lite</item>
+        <item name="startIconDrawable">@drawable/ic_search</item>
+        <item name="endIconDrawable">@drawable/ic_clear</item>
+        <item name="endIconMode">custom</item>
+        <item name="endIconTint">@color/hex_lite</item>
+    </style>
+</resources>
