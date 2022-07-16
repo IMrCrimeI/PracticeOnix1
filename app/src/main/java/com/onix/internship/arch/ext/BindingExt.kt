@@ -4,6 +4,7 @@ import android.annotation.SuppressLint
 import android.graphics.drawable.Drawable
 import android.net.Uri
 import android.widget.ImageView
+import android.widget.TextView
 import androidx.annotation.RawRes
 import androidx.appcompat.widget.AppCompatTextView
 import androidx.databinding.BindingAdapter
@@ -77,4 +78,9 @@ fun SwipeRefreshLayout.onRefresh(callback: () -> Unit) {
         callback.invoke()
         isRefreshing = false
     }
+}
+
+@BindingAdapter("setTintAndDrawable")
+fun TextView.changeTintAndDrawable(topDrawId: Int, botDrawId: Int) {
+    setCompoundDrawablesWithIntrinsicBounds(0, topDrawId, 0, botDrawId)
 }

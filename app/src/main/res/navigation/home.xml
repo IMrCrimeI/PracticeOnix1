@@ -1,16 +1,79 @@
 <?xml version="1.0" encoding="utf-8"?>
 <navigation xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/home"
-    app:startDestination="@id/splashFragment">
-
+    app:startDestination="@id/emptyTaskFragment">
     <fragment
-        android:id="@+id/splashFragment"
-        android:name="com.onix.internship.ui.splash.SplashFragment"
-        android:label="SplashFragment" />
+        android:id="@+id/emptyTaskFragment"
+        android:name="com.onix.internship.ui.documentTab.EmptyTask"
+        android:label="EmptyTask"
+        tools:layout="@layout/empty_task_fragment" >
+        <action
+            android:id="@+id/action_emptyTaskFragment_to_addTaskFragment"
+            app:destination="@id/addTaskFragment" />
+        <action
+            android:id="@+id/action_emptyTaskFragment_to_homeTabFragment"
+            app:destination="@id/homeTabFragment" />
+        <action
+            android:id="@+id/action_emptyTaskFragment_to_activityTabFragment"
+            app:destination="@id/activityTabFragment" />
+        <action
+            android:id="@+id/action_emptyTaskFragment_to_folderTabFragment"
+            app:destination="@id/folderTabFragment" />
+    </fragment>
     <fragment
-        android:id="@+id/translateFragment"
-        android:name="com.onix.internship.ui.translate.TranslateFragment"
-        android:label="TranslateFragment" />
-
+        android:id="@+id/homeTabFragment"
+        android:name="com.onix.internship.ui.homeTab.HomeTab"
+        android:label="HomeTab"
+        tools:layout="@layout/home_tab_fragment" />
+    <fragment
+        android:id="@+id/activityTabFragment"
+        android:name="com.onix.internship.ui.activityTab.ActivityTab"
+        android:label="ActivityTab"
+        tools:layout="@layout/activity_tab_fragment" />
+    <fragment
+        android:id="@+id/folderTabFragment"
+        android:name="com.onix.internship.ui.folderTab.FolderTab"
+        android:label="FolderTab"
+        tools:layout="@layout/folder_tab_fragment" />
+    <fragment
+        android:id="@+id/addTaskFragment"
+        android:name="com.onix.internship.ui.addTask.AddTask"
+        android:label="AddTask"
+        tools:layout="@layout/add_task_fragment" >
+        <action
+            android:id="@+id/action_addTaskFragment_to_calendarDialogFragment"
+            app:destination="@id/calendarDialogFragment" />
+        <argument
+            android:name="tagsName"
+            app:argType="string" />
+        <action
+            android:id="@+id/action_addTaskFragment_to_timeDialogFragment"
+            app:destination="@id/timeDialogFragment" />
+        <action
+            android:id="@+id/action_addTaskFragment_to_addTagsDialogFragment"
+            app:destination="@id/addTagsDialogFragment" />
+    </fragment>
+    <dialog
+        android:id="@+id/calendarDialogFragment"
+        android:name="com.onix.internship.ui.calendarPicker.CalendarDialogFragment"
+        android:label="CalendarDialogFragment"
+        tools:layout="@layout/calendar_dialog_fragment" />
+    <dialog
+        android:id="@+id/timeDialogFragment"
+        android:name="com.onix.internship.ui.timePicker.TimeDialogFragment"
+        android:label="TimeDialogFragment" >
+        <argument
+            android:name="states"
+            app:argType="com.onix.internship.data.DataAndTimeStates" />
+    </dialog>
+    <dialog
+        android:id="@+id/addTagsDialogFragment"
+        android:name="com.onix.internship.ui.addTags.AddTagsDialogFragment"
+        android:label="AddTagsDialogFragment" >
+        <action
+            android:id="@+id/action_addTagsDialogFragment_to_addTaskFragment"
+            app:destination="@id/addTaskFragment" />
+    </dialog>
 </navigation>
