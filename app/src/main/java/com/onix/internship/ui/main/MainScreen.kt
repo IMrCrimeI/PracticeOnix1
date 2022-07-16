@@ -6,8 +6,8 @@ import androidx.navigation.fragment.NavHostFragment
 import com.onix.internship.R
 import com.onix.internship.arch.BaseActivity
 import com.onix.internship.arch.ext.changeTintAndDrawable
-import com.onix.internship.data.TabStates
 import com.onix.internship.data.AppSettings
+import com.onix.internship.data.TabStates
 import com.onix.internship.databinding.ActivityMainBinding
 import org.koin.android.ext.android.inject
 import org.koin.androidx.viewmodel.ext.android.viewModel
@@ -31,6 +31,9 @@ class MainScreen : BaseActivity<ActivityMainBinding>(R.layout.activity_main) {
         setStartTab()
     }
 
+    override fun onBackPressed() {
+
+    }
     override fun setObservers() {
         super.setObservers()
         viewModel.goToHome.observe(this) {

@@ -6,6 +6,8 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.DialogFragment
 import androidx.navigation.fragment.findNavController
+import com.onix.internship.R
+import com.onix.internship.arch.ext.navigate
 import com.onix.internship.databinding.AddTagsDialogFragmentBinding
 import org.koin.androidx.viewmodel.ext.android.viewModel
 
@@ -28,7 +30,13 @@ class AddTagsDialogFragment : DialogFragment() {
         binding.viewModel = viewModel
 
         viewModel.backToFragment.observe(viewLifecycleOwner) {
-            findNavController().popBackStack()
+            if (it) {
+                navigate(
+                    AddTagsDialogFragmentDirections.actionAddTagsDialogFragmentToAddTaskFragment(
+                        viewModel.tags.value
+                    )
+                )
+            } else findNavController().popBackStack()
         }
     }
 }

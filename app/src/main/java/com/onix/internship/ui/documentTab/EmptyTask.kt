@@ -30,7 +30,7 @@ class EmptyTask : BaseFragment<EmptyTaskFragmentBinding>(R.layout.empty_task_fra
         val recyclerView: RecyclerView = binding.calendarRecycler
         recyclerView.adapter = weeksAdapter
 
-        requireActivity().onBackPressedDispatcher.addCallback(test)
+//        requireActivity().onBackPressedDispatcher.addCallback(test)
 
         viewModel.weeksLiveData.observe(viewLifecycleOwner) {
             weeksAdapter.submitList(it)
@@ -45,7 +45,7 @@ class EmptyTask : BaseFragment<EmptyTaskFragmentBinding>(R.layout.empty_task_fra
     override fun setObservers() {
         super.setObservers()
         viewModel.openCalendar.observe(viewLifecycleOwner) {
-            navigate(R.id.calendarDialogFragment)
+            navigate(EmptyTaskDirections.actionEmptyTaskFragmentToCalendarDialogFragment())
         }
     }
 

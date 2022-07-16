@@ -33,10 +33,10 @@ class AddTaskViewModel(val appSettings: AppSettings, private val repository: Rep
 
     fun addTags() {
         openAddTagsFragment.value = Unit
-        updateRecyclerItem()
     }
 
-    private fun updateRecyclerItem() {
+    fun updateRecyclerItem(name: String?) {
+        repository.addTagsItem(name)
         _tagsLiveData.value = repository.getTagsItem()
     }
 
