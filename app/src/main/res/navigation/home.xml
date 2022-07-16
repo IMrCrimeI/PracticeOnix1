@@ -10,17 +10,8 @@
         android:label="EmptyTask"
         tools:layout="@layout/empty_task_fragment" >
         <action
-            android:id="@+id/action_emptyTaskFragment_to_addTaskFragment"
-            app:destination="@id/addTaskFragment" />
-        <action
-            android:id="@+id/action_emptyTaskFragment_to_homeTabFragment"
-            app:destination="@id/homeTabFragment" />
-        <action
-            android:id="@+id/action_emptyTaskFragment_to_activityTabFragment"
-            app:destination="@id/activityTabFragment" />
-        <action
-            android:id="@+id/action_emptyTaskFragment_to_folderTabFragment"
-            app:destination="@id/folderTabFragment" />
+            android:id="@+id/action_emptyTaskFragment_to_calendarDialogFragment"
+            app:destination="@id/calendarDialogFragment" />
     </fragment>
     <fragment
         android:id="@+id/homeTabFragment"
@@ -47,7 +38,9 @@
             app:destination="@id/calendarDialogFragment" />
         <argument
             android:name="tagsName"
-            app:argType="string" />
+            app:argType="string"
+            android:defaultValue='default'
+            app:nullable="true" />
         <action
             android:id="@+id/action_addTaskFragment_to_timeDialogFragment"
             app:destination="@id/timeDialogFragment" />
@@ -74,6 +67,8 @@
         android:label="AddTagsDialogFragment" >
         <action
             android:id="@+id/action_addTagsDialogFragment_to_addTaskFragment"
-            app:destination="@id/addTaskFragment" />
+            app:destination="@id/addTaskFragment"
+            app:popUpTo="@id/addTaskFragment"
+            app:popUpToInclusive="true" />
     </dialog>
 </navigation>

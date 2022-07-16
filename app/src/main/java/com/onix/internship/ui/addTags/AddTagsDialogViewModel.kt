@@ -5,17 +5,12 @@ import com.onix.internship.arch.BaseViewModel
 import com.onix.internship.arch.lifecycle.SingleLiveEvent
 import com.onix.internship.data.Repository
 
-class AddTagsDialogViewModel(private val repository: Repository) : BaseViewModel() {
-    val tags = MutableLiveData("")
+class AddTagsDialogViewModel : BaseViewModel() {
+    val tags = MutableLiveData<String>()
 
-    val backToFragment = SingleLiveEvent<Unit>()
+    val backToFragment = SingleLiveEvent<Boolean>()
 
-    fun backToAddTask() {
-        backToFragment.value = Unit
-    }
-
-    fun addTags() {
-        repository.addTagsItem(tags.value.toString())
-        backToFragment.value = Unit
+    fun backToAddTask(it: Boolean) {
+        backToFragment.value = it
     }
 }

@@ -21,5 +21,5 @@ val viewModelModule = module {
     viewModel { AddTaskViewModel(get(), get()) }
     viewModel { CalendarViewModel() }
     viewModel { TimeDialogViewModel() }
-    viewModel { AddTagsDialogViewModel(get()) }
+    viewModel { AddTagsDialogViewModel() }
 }

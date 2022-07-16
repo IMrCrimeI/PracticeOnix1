@@ -4,6 +4,7 @@ import android.os.Bundle
 import android.view.View
 import android.widget.PopupMenu
 import androidx.navigation.fragment.findNavController
+import androidx.navigation.fragment.navArgs
 import androidx.recyclerview.widget.RecyclerView
 import com.onix.internship.R
 import com.onix.internship.arch.BaseFragment
@@ -16,10 +17,12 @@ import org.koin.androidx.viewmodel.ext.android.viewModel
 
 class AddTask : BaseFragment<AddTaskFragmentBinding>(R.layout.add_task_fragment) {
     override val viewModel: AddTaskViewModel by viewModel()
+    private val navArgs: AddTaskArgs by navArgs()
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         binding.viewModel = viewModel
+        updateList()
 
         val tagsAdapter = TagsAdapter { tagsItem -> adapterOnClick(tagsItem) }
         val recyclerView: RecyclerView = binding.tagsRecycler
@@ -36,7 +39,7 @@ class AddTask : BaseFragment<AddTaskFragmentBinding>(R.layout.add_task_fragment)
         viewModel.goToDocumentTab.observe(viewLifecycleOwner) {
             findNavController().popBackStack()
         }
-        viewModel.openAddTagsFragment.observe(viewLifecycleOwner){
+        viewModel.openAddTagsFragment.observe(viewLifecycleOwner) {
             navigate(AddTaskDirections.actionAddTaskFragmentToAddTagsDialogFragment())
         }
         viewModel.openPopupMenu.observe(viewLifecycleOwner) {
@@ -56,6 +59,12 @@ class AddTask : BaseFragment<AddTaskFragmentBinding>(R.layout.add_task_fragment)
 
                 else -> navigate(AddTaskDirections.actionAddTaskFragmentToTimeDialogFragment(it))
             }
+        }
+    }
+
+    fun updateList() {
+        if (navArgs.tagsName != "default") {
+            viewModel.updateRecyclerItem(navArgs.tagsName)
         }
     }
 

@@ -26,7 +26,7 @@ class Repository {
 
     private val tagsItem = mutableListOf<TagsItem>()
 
-    fun addTagsItem(tagsName: String) {
+    fun addTagsItem(tagsName: String?) {
         val bgColor: Int = Color.argb(70, rnd.nextInt(200), rnd.nextInt(200), rnd.nextInt(200))
         val textColor: Int = Color.argb(255, bgColor.red, bgColor.green, bgColor.blue)
         tagsItem.add(TagsItem(tagsId, tagsName, textColor, bgColor))
