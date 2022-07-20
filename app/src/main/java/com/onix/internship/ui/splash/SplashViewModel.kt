@@ -12,8 +12,7 @@ class SplashViewModel : BaseViewModel() {
         onLoading(true)
         launch {
             delay(1500)
-            initEvent.postValue(true)
+            initEvent.value = false
         }
     }
-
 }
