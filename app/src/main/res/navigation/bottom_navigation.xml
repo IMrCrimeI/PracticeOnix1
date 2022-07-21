@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/bottom_navigation"
+    app:startDestination="@id/mapScreen">
+
+    <fragment
+        android:id="@+id/mapScreen"
+        android:name="com.onix.internship.ui.bottomNavigation.map.MapScreen"
+        android:label="MapScreen" />
+    <fragment
+        android:id="@+id/pointsScreen"
+        android:name="com.onix.internship.ui.bottomNavigation.points.PointsScreen"
+        android:label="PointsScreen" />
+    <fragment
+        android:id="@+id/settingsScreen"
+        android:name="com.onix.internship.ui.bottomNavigation.settings.SettingsScreen"
+        android:label="SettingsScreen" />
+</navigation>
