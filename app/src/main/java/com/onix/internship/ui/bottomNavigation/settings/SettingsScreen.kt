@@ -21,10 +21,9 @@ class SettingsScreen :
         binding.viewModel = viewModel
 
         binding.levelSlider.addOnChangeListener { _, value, _ ->
-            binding.fromToLevelText.text = "${value.toInt()} from 5"
+            binding.fromToLevelText.text = "${value.toInt()} ${getString(R.string.from_5)}"
             editSkillSharedPref(value.toInt())
         }
-
     }
 
     override fun setObservers() {
@@ -36,15 +35,20 @@ class SettingsScreen :
 
     private fun editSkillSharedPref(it: Int) {
         edit.apply {
-            putInt("skill", it)
+            putInt(SKILL, it)
             commit()
         }
     }
 
     private fun editRoleSharedPref() {
         edit.apply {
-            putString("role", viewModel.role.value.toString())
+            putString(ROLE, viewModel.role.value.toString())
             commit()
         }
+    }
+
+    companion object {
+        const val ROLE = "role"
+        const val SKILL = "skill"
     }
 }

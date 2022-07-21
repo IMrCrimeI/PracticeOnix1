@@ -2,6 +2,7 @@
 <layout xmlns:android="http://schemas.android.com/apk/res/android">
 
     <data>
+
         <variable
             name="viewModel"
             type="com.onix.internship.ui.bottomNavigation.map.MapScreenViewModel" />
@@ -13,8 +14,9 @@
 
         <androidx.fragment.app.FragmentContainerView
             android:id="@+id/google_map"
-            class="com.google.android.gms.maps.SupportMapFragment"
+            android:name="com.google.android.gms.maps.SupportMapFragment"
             android:layout_width="match_parent"
             android:layout_height="match_parent" />
+
     </androidx.constraintlayout.widget.ConstraintLayout>
 </layout>

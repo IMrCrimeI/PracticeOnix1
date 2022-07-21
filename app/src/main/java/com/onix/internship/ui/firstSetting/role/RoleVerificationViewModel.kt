@@ -14,11 +14,7 @@ class RoleVerificationViewModel :
     val role = MutableLiveData<UserRole>()
 
     fun setUserRole(it: UserRole) {
-        when (it) {
-            UserRole.HERO -> role.value = UserRole.HERO
-            UserRole.PLAYER -> role.value = UserRole.PLAYER
-            UserRole.MASTER -> role.value = UserRole.MASTER
-        }
+        role.value = it
     }
 
     fun goBack() {
@@ -26,7 +22,7 @@ class RoleVerificationViewModel :
     }
 
     fun goToRoleFragment() {
-        if(role.value != null) {
+        if (role.value != null) {
             _moveToFragment.value = true
         }
     }

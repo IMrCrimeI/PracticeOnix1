@@ -5,6 +5,6 @@ data class PointItem(
 //    val location : LatLng,
     val date: String,
     val time: String,
-    val role : String,
+    val role : UserRole,
     val level : Int
 )

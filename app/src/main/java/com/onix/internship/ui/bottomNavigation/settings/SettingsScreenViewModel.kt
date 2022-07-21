@@ -8,16 +8,12 @@ import com.onix.internship.data.UserRole
 class SettingsScreenViewModel : BaseViewModel() {
 
     private val _changeSettings = MutableLiveData<Unit>()
-    val changeSettings : LiveData<Unit> = _changeSettings
+    val changeSettings: LiveData<Unit> = _changeSettings
 
     val role = MutableLiveData<UserRole>()
 
     fun setUserRole(it: UserRole) {
-        when (it) {
-            UserRole.HERO -> role.value = UserRole.HERO
-            UserRole.PLAYER -> role.value = UserRole.PLAYER
-            UserRole.MASTER -> role.value = UserRole.MASTER
-        }
+        role.value = it
         _changeSettings.value = Unit
     }
 }

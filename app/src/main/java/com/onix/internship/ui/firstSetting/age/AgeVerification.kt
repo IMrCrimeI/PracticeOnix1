@@ -3,7 +3,7 @@ package com.onix.internship.ui.firstSetting.age
 import android.content.SharedPreferences
 import android.os.Bundle
 import android.view.View
-import android.widget.Toast
+import com.google.android.material.snackbar.Snackbar
 import com.onix.internship.R
 import com.onix.internship.arch.BaseFragment
 import com.onix.internship.arch.ext.navigate
@@ -39,13 +39,14 @@ class AgeVerification :
     }
 
     private fun navigate(it: Boolean) {
+
         if (it) {
             navigate(AgeVerificationDirections.actionAgeVerificationToSkillVerification())
         } else {
-            Toast.makeText(
-                context,
-                "К сожалению, вы не можете использовать это приложение!!!",
-                Toast.LENGTH_SHORT
+            Snackbar.make(
+                binding.mainContainer,
+                getString(R.string.age_error),
+                Snackbar.LENGTH_SHORT
             ).show()
         }
     }
