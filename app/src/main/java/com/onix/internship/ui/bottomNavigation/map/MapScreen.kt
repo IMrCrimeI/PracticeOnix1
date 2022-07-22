@@ -56,9 +56,7 @@ class MapScreen : BaseFragment<MapScreenFragmentBinding>(R.layout.map_screen_fra
     override fun onMapReady(map: GoogleMap) {
         mMap = map
         mMap.isMyLocationEnabled = true
-
         getDeviceLocation(mMap)
-
         viewModel.mapPoints.observe(viewLifecycleOwner) {
             mMap.clear()
             it.forEach { point ->
@@ -66,7 +64,7 @@ class MapScreen : BaseFragment<MapScreenFragmentBinding>(R.layout.map_screen_fra
                     mMap,
                     point.location,
                     point,
-                    getIcon()
+                    getIcon(point)
                 )
             }
         }
@@ -95,16 +93,13 @@ class MapScreen : BaseFragment<MapScreenFragmentBinding>(R.layout.map_screen_fra
         startActivity(shareIntent)
     }
 
-    private fun getIcon(): BitmapDescriptor? {
-        var icon: BitmapDescriptor? = null
-        viewModel.mapPoints.value?.forEach {
-            icon = when (it.role) {
+    private fun getIcon(point: PointItem): BitmapDescriptor {
+        val icon: BitmapDescriptor = when (point.role) {
                 UserRole.HERO -> BitmapDescriptorFactory.fromResource(R.drawable.ic_hero)
                 UserRole.PLAYER -> BitmapDescriptorFactory.fromResource(R.drawable.ic_player)
                 UserRole.MASTER -> BitmapDescriptorFactory.fromResource(R.drawable.ic_master)
                 else -> BitmapDescriptorFactory.defaultMarker()
             }
-        }
         return icon
     }
 }

@@ -46,7 +46,7 @@ class MapScreenViewModel(
         )
     }
 
-    fun createMapsPoint(map: GoogleMap, location: LatLng, pointItem: PointItem, bitmap: BitmapDescriptor?) {
+    fun createMapsPoint(map: GoogleMap, location: LatLng, pointItem: PointItem, bitmap: BitmapDescriptor) {
         map.addMarker(
             MarkerOptions()
                 .position(location)
