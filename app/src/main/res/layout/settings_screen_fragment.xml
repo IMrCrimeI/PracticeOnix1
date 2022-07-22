@@ -3,9 +3,6 @@
     xmlns:app="http://schemas.android.com/apk/res-auto">
 
     <data>
-
-        <import type="com.onix.internship.data.UserRole" />
-
         <variable
             name="viewModel"
             type="com.onix.internship.ui.bottomNavigation.settings.SettingsScreenViewModel" />
@@ -56,6 +53,7 @@
             android:layout_height="wrap_content"
             android:labelFor="@id/fromToLevelText"
             android:stepSize="1"
+            android:valueFrom="1"
             android:valueTo="5"
             app:labelBehavior="gone"
             app:layout_constraintEnd_toEndOf="parent"
@@ -106,21 +104,24 @@
             <RadioButton
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                android:onClick="@{() -> viewModel.setUserRole(UserRole.HERO)}"
+                android:checked="@={viewModel.roleStates.roleHero}"
+                android:onClick="@{_ -> viewModel.changeUserRole()}"
                 android:text="@string/hero"
                 android:textSize="16sp" />
 
             <RadioButton
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                android:onClick="@{() -> viewModel.setUserRole(UserRole.PLAYER)}"
+                android:checked="@={viewModel.roleStates.rolePlayer}"
+                android:onClick="@{_ -> viewModel.changeUserRole()}"
                 android:text="@string/player"
                 android:textSize="16sp" />
 
             <RadioButton
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                android:onClick="@{() -> viewModel.setUserRole(UserRole.MASTER)}"
+                android:checked="@={viewModel.roleStates.roleMaster}"
+                android:onClick="@{_ -> viewModel.changeUserRole()}"
                 android:text="@string/master"
                 android:textSize="16sp" />
         </RadioGroup>

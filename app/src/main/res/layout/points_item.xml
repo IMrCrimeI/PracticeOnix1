@@ -4,16 +4,13 @@
 
     <data>
 
-        <variable
-            name="pointItem"
-            type="com.onix.internship.data.PointItem" />
     </data>
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content">
 
-        <ImageView
+        <androidx.appcompat.widget.AppCompatImageView
             android:id="@+id/startItemImage"
             android:layout_width="40dp"
             android:layout_height="40dp"
@@ -28,7 +25,6 @@
             android:layout_width="0dp"
             android:layout_marginStart="24dp"
             android:layout_height="wrap_content"
-            android:text="@{pointItem.role + @string/level + pointItem.level}"
             android:textColor="@color/black"
             android:textSize="18sp"
             app:layout_constraintBottom_toTopOf="@+id/dataAndTimeText"
@@ -40,7 +36,6 @@
             android:id="@+id/dataAndTimeText"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:text="@{@string/available + pointItem.date + @string/at + pointItem.time}"
             android:textColor="@color/black"
             android:textSize="12sp"
             app:layout_constraintBottom_toBottomOf="parent"
@@ -48,7 +43,7 @@
             app:layout_constraintStart_toStartOf="@id/roleAndLevelText"
             app:layout_constraintTop_toBottomOf="@+id/roleAndLevelText" />
 
-        <ImageView
+        <androidx.appcompat.widget.AppCompatImageView
             android:id="@+id/endItemImage"
             android:layout_width="40dp"
             android:layout_height="40dp"

@@ -1,21 +1,18 @@
 package com.onix.internship.ui.firstSetting.age
 
 import androidx.lifecycle.LiveData
-import androidx.lifecycle.MutableLiveData
 import com.onix.internship.arch.BaseViewModel
 import com.onix.internship.arch.lifecycle.SingleLiveEvent
+import com.onix.internship.data.repository.AppSharedPreferences
 
-class AgeVerificationViewModel : BaseViewModel() {
+class AgeVerificationViewModel(private val sharedPreferences: AppSharedPreferences) : BaseViewModel() {
     private val _moveToFragment = SingleLiveEvent<Boolean>()
     val moveToFragment: LiveData<Boolean> = _moveToFragment
 
-    private val age = MutableLiveData(false)
+    val model = AgeVerificationModel()
 
     fun goToSkillFragment() {
-        _moveToFragment.value = age.value
-    }
-
-    fun switchChanged(isChecked: Boolean) {
-        age.value = isChecked
+        _moveToFragment.value = model.age.get()
+        sharedPreferences.setBooleanInSharPref(model.age.get())
     }
 }

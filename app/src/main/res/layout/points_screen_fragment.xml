@@ -11,6 +11,7 @@
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
+        android:id="@+id/pointsMainContainer"
         android:layout_height="match_parent">
 
         <androidx.recyclerview.widget.RecyclerView
@@ -28,6 +29,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginEnd="12dp"
+            android:onClick="@{() -> viewModel.addPoint()}"
             android:layout_marginBottom="12dp"
             android:src="@drawable/ic_outline_add"
             app:backgroundTint="#D2D2CF"

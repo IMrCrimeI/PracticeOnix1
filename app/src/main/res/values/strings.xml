@@ -13,14 +13,11 @@
     <string name="err_empty_pass">Password is empty</string>
     <string name="err_empty_token">Token is empty</string>
 
-    <string name="level">Level</string>
-    <string name="available">Available</string>
-    <string name="at">at</string>
     <string name="map">Map</string>
     <string name="points">Points</string>
     <string name="settings">Settings</string>
     <string name="what_s_your_level">What\'s your level?</string>
-    <string name="_0_from_5">0 from 5</string>
+    <string name="_0_from_5">1 from 5</string>
     <string name="from_5">from 5</string>
     <string name="back">Back</string>
     <string name="next">Next</string>
@@ -33,4 +30,6 @@
     <string name="change_skill_level">Change skill level:</string>
     <string name="change_role">Change role:</string>
     <string name="age_error">Приносим свои извенения, приложение могут использовать лица достигшие 16 лет!</string>
+    <string name="export_my_position">EXPORT MY\nPOSITION</string>
+    <string name="add_point_success">Точка добавлена</string>
 </resources>

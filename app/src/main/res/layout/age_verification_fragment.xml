@@ -27,7 +27,7 @@
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
 
-        <ImageView
+        <androidx.appcompat.widget.AppCompatImageView
             android:id="@+id/ageVerificationImg"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
@@ -53,7 +53,7 @@
         <com.google.android.material.switchmaterial.SwitchMaterial
             android:id="@+id/confrimSwitch"
             android:layout_width="wrap_content"
-            android:onCheckedChanged="@{(view, checked) -> viewModel.switchChanged(checked)}"
+            android:checked="@={viewModel.model.age}"
             android:layout_height="wrap_content"
             app:layout_constraintBottom_toTopOf="@+id/confirmButton"
             app:layout_constraintEnd_toEndOf="parent"

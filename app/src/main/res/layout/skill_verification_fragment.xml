@@ -14,7 +14,7 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent">
 
-        <ImageView
+        <androidx.appcompat.widget.AppCompatImageView
             android:id="@+id/skillImage"
             android:layout_width="wrap_content"
             android:layout_height="275dp"
@@ -40,6 +40,7 @@
             android:layout_height="wrap_content"
             android:labelFor="@id/fromToLevelText"
             android:stepSize="1"
+            android:valueFrom="1"
             android:valueTo="5"
             app:labelBehavior="gone"
             app:layout_constraintEnd_toEndOf="parent"

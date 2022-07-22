@@ -4,8 +4,6 @@
 
     <data>
 
-        <import type="com.onix.internship.data.UserRole"/>
-
         <variable
             name="viewModel"
             type="com.onix.internship.ui.firstSetting.role.RoleVerificationViewModel" />
@@ -16,7 +14,7 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent">
 
-        <ImageView
+        <androidx.appcompat.widget.AppCompatImageView
             android:id="@+id/roleImage"
             android:layout_width="wrap_content"
             android:layout_height="275dp"
@@ -50,21 +48,21 @@
             <RadioButton
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                android:onClick="@{() -> viewModel.setUserRole(UserRole.HERO)}"
+                android:checked="@={viewModel.roleStates.roleHero}"
                 android:text="@string/hero"
                 android:textSize="16sp" />
 
             <RadioButton
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                android:onClick="@{() -> viewModel.setUserRole(UserRole.PLAYER)}"
+                android:checked="@={viewModel.roleStates.rolePlayer}"
                 android:text="@string/player"
                 android:textSize="16sp" />
 
             <RadioButton
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                android:onClick="@{() -> viewModel.setUserRole(UserRole.MASTER)}"
+                android:checked="@={viewModel.roleStates.roleMaster}"
                 android:text="@string/master"
                 android:textSize="16sp" />
         </RadioGroup>
