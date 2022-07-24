@@ -1,0 +1,76 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <data>
+
+        <variable
+            name="viewModel"
+            type="com.onix.internship.ui.firstSetting.age.AgeVerificationViewModel" />
+
+    </data>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:id="@+id/mainContainer"
+        android:layout_height="match_parent">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/hello"
+            android:textSize="46sp"
+            android:textColor="@color/black"
+            android:textStyle="italic"
+            app:layout_constraintBottom_toTopOf="@+id/ageVerificationImg"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <androidx.appcompat.widget.AppCompatImageView
+            android:id="@+id/ageVerificationImg"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:src="@drawable/identity_verification"
+            app:layout_constraintBottom_toTopOf="@id/ageVerificationText"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <TextView
+            android:id="@+id/ageVerificationText"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:textColor="@color/black"
+            android:text="@string/ageText"
+            android:textSize="24sp"
+            app:layout_constraintBottom_toTopOf="@id/confirmButton"
+            app:layout_constraintEnd_toStartOf="@id/confrimSwitch"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/ageVerificationImg" />
+
+        <com.google.android.material.switchmaterial.SwitchMaterial
+            android:id="@+id/confrimSwitch"
+            android:layout_width="wrap_content"
+            android:checked="@={viewModel.model.age}"
+            android:layout_height="wrap_content"
+            app:layout_constraintBottom_toTopOf="@+id/confirmButton"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toEndOf="@+id/ageVerificationText"
+            app:layout_constraintTop_toBottomOf="@+id/ageVerificationImg" />
+
+        <com.google.android.material.button.MaterialButton
+            android:id="@+id/confirmButton"
+            style="?attr/materialButtonOutlinedStyle"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:onClick="@{() -> viewModel.goToSkillFragment()}"
+            android:text="@string/next"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/ageVerificationText" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</layout>
