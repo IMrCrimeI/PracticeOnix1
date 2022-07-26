@@ -8,7 +8,12 @@
     <color name="black">#FF000000</color>
     <color name="white">#FFFFFFFF</color>
 
-    <color name="colorPaint">#FF000000</color>
-    <color name="colorBackground">#FFFFFFFF</color>
+    <color name="color_text_red">#e80000</color>
+    <color name="color_text_yellow">#e4e642</color>
+    <color name="color_text_green">#00ff00</color>
+    <color name="color_text_violet">#ff18f7</color>
+    <color name="color_text_dark_blue">#00008f</color>
+    <color name="color_text_light_blue">#00e8e8</color>
+    <color name="vista_blue">#95d6b6</color>
 
 </resources>
