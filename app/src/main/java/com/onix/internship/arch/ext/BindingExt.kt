@@ -15,6 +15,7 @@ import com.bumptech.glide.load.engine.GlideException
 import com.bumptech.glide.load.resource.gif.GifDrawable
 import com.bumptech.glide.request.RequestListener
 import com.bumptech.glide.request.RequestOptions
+import com.onix.internship.R
 
 @BindingAdapter("circleImage", "placeholder", requireAll = false)
 fun ImageView.bindCircleImage(image: String?, placeholder: Drawable?) {
@@ -76,5 +77,20 @@ fun SwipeRefreshLayout.onRefresh(callback: () -> Unit) {
     setOnRefreshListener {
         callback.invoke()
         isRefreshing = false
+    }
+}
+
+@BindingAdapter("deviceValue")
+fun ImageView.deviceValue(value: String) {
+    if (value.contains("https://")) {
+        Glide.with(context)
+            .load(Uri.parse(value))
+            .into(this)
+    } else if (value == "ONETIME") {
+        Glide.with(context)
+            .load("https://www.wrenkitchens.com/blog/wp-content/uploads/2021/12/2022-kitchen-design-trends-dark-kitchen-2048x1366.jpg")
+            .into(this)
+    } else {
+        this.setImageResource(R.drawable.ic_none_image)
     }
 }
