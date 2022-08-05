@@ -5,6 +5,6 @@ import com.onix.internship.data.mapper.SensorMapper
 import org.koin.dsl.module
 
 val mapperModule = module {
-    single { SensorMapper() }
-    single { HomeInfoMapper(get()) }
+    single { SensorMapper(get()) }
+    single { HomeInfoMapper(get(), get()) }
 }

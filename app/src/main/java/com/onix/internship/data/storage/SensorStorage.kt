@@ -6,12 +6,19 @@ class SensorStorage {
     private val sensorsList = mutableListOf<DeviceData>()
 
     fun getSensorsList(): List<DeviceData> {
-        return sensorsList.distinct()
+        return sensorsList
     }
 
     fun addNewSensorInList(sensor: List<DeviceData>) {
-        sensorsList.removeAll(sensor.toSet())
-        sensorsList.addAll(sensor)
+        if (sensorsList.isEmpty()) {
+            sensorsList.addAll(sensor)
+        } else {
+            sensor.forEach {
+                if (!sensorsList.contains(it)) {
+                    sensorsList.add(it)
+                }
+            }
+        }
     }
 
     fun addNewSensorInList(sensor: DeviceData) {

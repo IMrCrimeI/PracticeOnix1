@@ -16,7 +16,7 @@ class NetworkFactory {
     @OptIn(ExperimentalSerializationApi::class)
     private val retrofit: Retrofit
         get() = Retrofit.Builder()
-            .baseUrl("https://onix-systems.github.io")
+            .baseUrl(BASE_URL)
             .addConverterFactory(Json.asConverterFactory("application/json".toMediaType()))
             .client(okHttpClient)
             .build()
@@ -26,4 +26,8 @@ class NetworkFactory {
             .Builder()
             .addInterceptor(NetworkInterceptor())
             .build()
+
+    companion object {
+        const val BASE_URL = "https://onix-systems.github.io"
+    }
 }

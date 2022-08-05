@@ -17,12 +17,11 @@
     <string name="canvas">Canvas</string>
     <string name="add_new_sensor">Add new sensor</string>
     <string name="room">Room:</string>
-    <string name="type">Type:</string>
-    <string name="subtype">Subtype:</string>
+    <string name="type">Type: %s</string>
+    <string name="subtype">Subtype: %s</string>
     <string name="add_sensor">Add sensor</string>
     <string name="delete">Delete</string>
     <string name="enter_room_name">Enter room name</string>
-
     <string-array name="type">
         <item>Sensor</item>
         <item>Camera</item>
