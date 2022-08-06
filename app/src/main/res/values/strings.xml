@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name">Internship Onix</string>
+    <string name="app_name">Smart House</string>
 
     <string name="auth_user_name_hint">Enter your name</string>
     <string name="auth_email_hint">Enter email</string>
@@ -15,4 +15,23 @@
 
     <string name="menu_log_out">Log out</string>
     <string name="canvas">Canvas</string>
+    <string name="add_new_sensor">Add new sensor</string>
+    <string name="room">Room:</string>
+    <string name="type">Type: %s</string>
+    <string name="subtype">Subtype: %s</string>
+    <string name="add_sensor">Add sensor</string>
+    <string name="delete">Delete</string>
+    <string name="enter_room_name">Enter room name</string>
+    <string-array name="type">
+        <item>Sensor</item>
+        <item>Camera</item>
+        <item>Sound</item>
+        <item>Light</item>
+    </string-array>
+
+    <string-array name="sub_type">
+        <item>switch</item>
+        <item>onetime</item>
+        <item>level</item>
+    </string-array>
 </resources>

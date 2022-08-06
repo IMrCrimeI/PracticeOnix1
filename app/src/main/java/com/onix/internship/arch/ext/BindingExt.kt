@@ -3,7 +3,12 @@ package com.onix.internship.arch.ext
 import android.annotation.SuppressLint
 import android.graphics.drawable.Drawable
 import android.net.Uri
+import android.view.View
+import android.widget.AdapterView
+import android.widget.ArrayAdapter
 import android.widget.ImageView
+import android.widget.Spinner
+import androidx.annotation.ArrayRes
 import androidx.annotation.RawRes
 import androidx.appcompat.widget.AppCompatTextView
 import androidx.databinding.BindingAdapter
@@ -15,6 +20,7 @@ import com.bumptech.glide.load.engine.GlideException
 import com.bumptech.glide.load.resource.gif.GifDrawable
 import com.bumptech.glide.request.RequestListener
 import com.bumptech.glide.request.RequestOptions
+import com.onix.internship.ui.addSensor.OnSpinnerItemClick
 
 @BindingAdapter("circleImage", "placeholder", requireAll = false)
 fun ImageView.bindCircleImage(image: String?, placeholder: Drawable?) {
@@ -76,5 +82,30 @@ fun SwipeRefreshLayout.onRefresh(callback: () -> Unit) {
     setOnRefreshListener {
         callback.invoke()
         isRefreshing = false
+    }
+}
+
+fun Spinner.setupSpinner(@ArrayRes type: Int, onSpinnerItemClick: OnSpinnerItemClick) {
+    ArrayAdapter.createFromResource(
+        context,
+        type,
+        android.R.layout.simple_spinner_item
+    ).also { adapter ->
+        adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item)
+        this.adapter = adapter
+        onItemSelectedListener = object : AdapterView.OnItemSelectedListener {
+            override fun onItemSelected(
+                parent: AdapterView<*>?,
+                view: View?,
+                position: Int,
+                id: Long
+            ) {
+                onSpinnerItemClick.onItemClick(position)
+            }
+
+            override fun onNothingSelected(parent: AdapterView<*>?) {
+            }
+
+        }
     }
 }
