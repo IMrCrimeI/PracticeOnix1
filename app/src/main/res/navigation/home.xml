@@ -2,15 +2,35 @@
 <navigation xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:id="@+id/home"
-    app:startDestination="@id/splashFragment">
+    app:startDestination="@id/notesListFragment">
 
     <fragment
-        android:id="@+id/splashFragment"
-        android:name="com.onix.internship.ui.splash.SplashFragment"
-        android:label="SplashFragment" />
+        android:id="@+id/emergencyFragment"
+        android:name="com.onix.internship.ui.emergency.EmergencyFragment"
+        android:label="Emergency" >
+        <action
+            android:id="@+id/action_emergencyFragment_to_emergencyDialogFragment"
+            app:destination="@id/emergencyDialogFragment" />
+    </fragment>
     <fragment
-        android:id="@+id/translateFragment"
-        android:name="com.onix.internship.ui.translate.TranslateFragment"
-        android:label="TranslateFragment" />
+        android:id="@+id/helpFragment"
+        android:name="com.onix.internship.ui.help.HelpFragment"
+        android:label="Help" />
+    <fragment
+        android:id="@+id/notesListFragment"
+        android:name="com.onix.internship.ui.notesList.NotesListFragment"
+        android:label="Notes list" >
+        <action
+            android:id="@+id/action_notesListFragment_to_addNoteFragment"
+            app:destination="@id/addNoteFragment" />
+    </fragment>
+    <dialog
+        android:id="@+id/emergencyDialogFragment"
+        android:name="com.onix.internship.ui.emergency.dialog.EmergencyDialogFragment"
+        android:label="EmergencyDialogFragment" />
+    <fragment
+        android:id="@+id/addNoteFragment"
+        android:name="com.onix.internship.ui.notesList.addNotes.AddNoteFragment"
+        android:label="AddNoteFragment" />
 
 </navigation>

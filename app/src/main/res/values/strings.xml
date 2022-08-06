@@ -13,6 +13,17 @@
     <string name="err_empty_pass">Password is empty</string>
     <string name="err_empty_token">Token is empty</string>
 
-    <string name="menu_log_out">Log out</string>
-    <string name="canvas">Canvas</string>
+    <string name="notes_list">Notes list</string>
+    <string name="emergency">Emergency</string>
+    <string name="help">Help</string>
+    <string name="sort">Sort</string>
+    <string name="clear_database">Clear database</string>
+    <string name="enter_title">Enter title</string>
+    <string name="enter_content">Enter content</string>
+    <string name="choice_color">Choice color</string>
+    <string name="edit_is_enabled">Edit is enabled</string>
+    <string name="add_note">ADD NOTE</string>
+    <string name="warning">Are you sure you want to delete all notes?\nThis action cannot be undone!</string>
+    <string name="no">NO</string>
+    <string name="yes">YES</string>
 </resources>
