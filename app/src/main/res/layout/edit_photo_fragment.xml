@@ -1,0 +1,172 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <data>
+
+        <import type="android.view.View" />
+
+        <import type="com.onix.internship.entity.SeekBarStates" />
+
+        <variable
+            name="viewModel"
+            type="com.onix.internship.ui.editPhoto.EditPhotoViewModel" />
+    </data>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:id="@+id/constraintLayout"
+            android:layout_width="match_parent"
+            android:layout_height="?attr/actionBarSize"
+            android:background="?attr/colorPrimary"
+            android:theme="?attr/actionBarTheme"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent">
+
+            <androidx.appcompat.widget.AppCompatImageView
+                android:id="@+id/restore"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_margin="5dp"
+                android:onClick="@{_ -> viewModel.restoreImage()}"
+                android:src="@drawable/ic_restore"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <androidx.appcompat.widget.AppCompatImageView
+                android:id="@+id/save"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_margin="5dp"
+                android:onClick="@{_ -> viewModel.saveImageInFolder()}"
+                android:src="@drawable/ic_save"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+        <androidx.constraintlayout.utils.widget.ImageFilterView
+            android:id="@+id/editableImage"
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:adjustViewBounds="true"
+            app:layout_constraintBottom_toTopOf="@+id/bottomDivider"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/constraintLayout" />
+
+        <androidx.constraintlayout.widget.Guideline
+            android:id="@+id/bottomDivider"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            app:layout_constraintGuide_percent="0.85" />
+
+        <com.google.android.material.slider.Slider
+            android:id="@+id/contrastSlider"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:value="1"
+            android:valueFrom="0.1"
+            android:valueTo="2"
+            android:visibility="@{viewModel.test == SeekBarStates.CONTRAST ? View.VISIBLE : View.GONE}"
+            app:layout_constraintBottom_toTopOf="@+id/brightnessButton"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/editableImage" />
+
+        <com.google.android.material.slider.Slider
+            android:id="@+id/brightnessSlider"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:value="1"
+            android:valueFrom="0.1"
+            android:valueTo="2"
+            android:visibility="@{viewModel.test == SeekBarStates.BRIGHTNESS ? View.VISIBLE : View.GONE}"
+            app:layout_constraintBottom_toTopOf="@+id/brightnessButton"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/editableImage" />
+
+        <com.google.android.material.slider.Slider
+            android:id="@+id/saturationSlider"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:value="1"
+            android:valueFrom="0"
+            android:valueTo="1"
+            android:visibility="@{viewModel.test == SeekBarStates.SATURATION ? View.VISIBLE : View.GONE}"
+            app:layout_constraintBottom_toTopOf="@+id/brightnessButton"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/editableImage" />
+
+        <com.onix.internship.ui.editPhoto.ColorSeekBar
+            android:id="@+id/color_seek_bar"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:visibility="@{viewModel.test == SeekBarStates.SHADE ? View.VISIBLE : View.GONE}"
+            app:layout_constraintBottom_toTopOf="@+id/brightnessButton"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/editableImage" />
+
+        <com.google.android.material.button.MaterialButton
+            android:id="@+id/contrastButton"
+            android:layout_width="0dp"
+            android:layout_height="55dp"
+            android:layout_marginHorizontal="5dp"
+            android:layout_marginBottom="10dp"
+            android:onClick="@{_ -> viewModel.changeSeekBar(SeekBarStates.CONTRAST)}"
+            android:text="@string/contrast"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toStartOf="@id/brightnessButton"
+            app:layout_constraintHorizontal_weight="1"
+            app:layout_constraintStart_toStartOf="parent" />
+
+        <com.google.android.material.button.MaterialButton
+            android:id="@+id/brightnessButton"
+            android:layout_width="0dp"
+            android:layout_height="55dp"
+            android:layout_marginHorizontal="5dp"
+            android:layout_marginBottom="10dp"
+            android:onClick="@{_ -> viewModel.changeSeekBar(SeekBarStates.BRIGHTNESS)}"
+            android:text="@string/brightness"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toStartOf="@id/shadeButton"
+            app:layout_constraintHorizontal_weight="1"
+            app:layout_constraintStart_toEndOf="@id/contrastButton" />
+
+        <com.google.android.material.button.MaterialButton
+            android:id="@+id/shadeButton"
+            android:layout_width="0dp"
+            android:layout_height="55dp"
+            android:layout_marginHorizontal="5dp"
+            android:layout_marginBottom="10dp"
+            android:onClick="@{_ -> viewModel.changeSeekBar(SeekBarStates.SHADE)}"
+            android:text="@string/shade"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toStartOf="@id/saturationButton"
+            app:layout_constraintHorizontal_weight="1"
+            app:layout_constraintStart_toEndOf="@id/brightnessButton" />
+
+        <com.google.android.material.button.MaterialButton
+            android:id="@+id/saturationButton"
+            android:layout_width="0dp"
+            android:layout_height="55dp"
+            android:layout_marginHorizontal="5dp"
+            android:layout_marginBottom="10dp"
+            android:onClick="@{_ -> viewModel.changeSeekBar(SeekBarStates.SATURATION)}"
+            android:text="@string/black_white"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_weight="1"
+            app:layout_constraintStart_toEndOf="@id/shadeButton" />
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</layout>

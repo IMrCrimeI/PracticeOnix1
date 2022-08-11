@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name">Internship Onix</string>
+    <string name="app_name">Lesson eleven</string>
 
     <string name="auth_user_name_hint">Enter your name</string>
     <string name="auth_email_hint">Enter email</string>
@@ -15,4 +15,16 @@
 
     <string name="menu_log_out">Log out</string>
     <string name="canvas">Canvas</string>
+    <string name="select_photo_to_edit">Select photo to edit</string>
+    <string name="from_gallery">From gallery</string>
+    <string name="from_camera">From camera</string>
+    <string name="_1_1">1:1</string>
+    <string name="_3_4">3:4</string>
+    <string name="_4_3">4:3</string>
+    <string name="_16_9">16:9</string>
+    <string name="_9_16">9:16</string>
+    <string name="contrast">contrast</string>
+    <string name="brightness">brightness</string>
+    <string name="shade">shade</string>
+    <string name="black_white">Black-White</string>
 </resources>
