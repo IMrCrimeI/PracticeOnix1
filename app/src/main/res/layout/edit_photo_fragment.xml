@@ -54,12 +54,15 @@
         <androidx.constraintlayout.utils.widget.ImageFilterView
             android:id="@+id/editableImage"
             android:layout_width="match_parent"
-            android:layout_height="0dp"
+            android:layout_height="wrap_content"
             android:adjustViewBounds="true"
+            app:brightness="@{viewModel.model.brightnessValue}"
+            app:contrast="@{viewModel.model.contrastValue}"
             app:layout_constraintBottom_toTopOf="@+id/bottomDivider"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/constraintLayout" />
+            app:layout_constraintTop_toBottomOf="@+id/constraintLayout"
+            app:saturation="@{viewModel.model.saturationValue}" />
 
         <androidx.constraintlayout.widget.Guideline
             android:id="@+id/bottomDivider"
@@ -69,53 +72,27 @@
             app:layout_constraintGuide_percent="0.85" />
 
         <com.google.android.material.slider.Slider
-            android:id="@+id/contrastSlider"
-            android:layout_width="wrap_content"
+            android:id="@+id/slider_editor"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:value="1"
+            android:value="@{viewModel.currentSliderValue}"
             android:valueFrom="0.1"
             android:valueTo="2"
-            android:visibility="@{viewModel.test == SeekBarStates.CONTRAST ? View.VISIBLE : View.GONE}"
+            android:visibility="@{viewModel.isShadeEditing ? View.GONE : View.VISIBLE}"
             app:layout_constraintBottom_toTopOf="@+id/brightnessButton"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/editableImage" />
-
-        <com.google.android.material.slider.Slider
-            android:id="@+id/brightnessSlider"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:value="1"
-            android:valueFrom="0.1"
-            android:valueTo="2"
-            android:visibility="@{viewModel.test == SeekBarStates.BRIGHTNESS ? View.VISIBLE : View.GONE}"
-            app:layout_constraintBottom_toTopOf="@+id/brightnessButton"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/editableImage" />
-
-        <com.google.android.material.slider.Slider
-            android:id="@+id/saturationSlider"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:value="1"
-            android:valueFrom="0"
-            android:valueTo="1"
-            android:visibility="@{viewModel.test == SeekBarStates.SATURATION ? View.VISIBLE : View.GONE}"
-            app:layout_constraintBottom_toTopOf="@+id/brightnessButton"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/editableImage" />
+            app:layout_constraintTop_toBottomOf="@+id/bottomDivider" />
 
         <com.onix.internship.ui.editPhoto.ColorSeekBar
             android:id="@+id/color_seek_bar"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:visibility="@{viewModel.test == SeekBarStates.SHADE ? View.VISIBLE : View.GONE}"
+            android:visibility="@{viewModel.isShadeEditing ? View.VISIBLE : View.GONE}"
             app:layout_constraintBottom_toTopOf="@+id/brightnessButton"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/editableImage" />
+            app:layout_constraintTop_toBottomOf="@+id/bottomDivider" />
 
         <com.google.android.material.button.MaterialButton
             android:id="@+id/contrastButton"

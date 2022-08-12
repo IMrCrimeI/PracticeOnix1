@@ -1,8 +1,8 @@
 package com.onix.internship.di
 
-import com.onix.internship.ui.editPhoto.injector.DeviceGalleryInjector
+import com.onix.internship.data.storage.DeviceGalleryInjector
 import org.koin.dsl.module
 
-val injectorModule = module {
+val dataModule = module {
     single { DeviceGalleryInjector(get()) }
 }

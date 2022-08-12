@@ -1,17 +1,21 @@
 package com.onix.internship.ui.editPhoto
 
 import android.graphics.*
+import android.os.Build
 import android.os.Bundle
+import android.os.Handler
+import android.os.Looper
+import android.view.PixelCopy
 import android.view.View
-import androidx.core.graphics.drawable.toBitmap
-import com.google.android.material.slider.Slider
+import com.google.android.material.snackbar.Snackbar
 import com.onix.internship.R
 import com.onix.internship.arch.BaseFragment
+import com.onix.internship.data.storage.DeviceGalleryInjector
 import com.onix.internship.data.storage.ImageStorage
 import com.onix.internship.databinding.EditPhotoFragmentBinding
-import com.onix.internship.ui.editPhoto.injector.DeviceGalleryInjector
 import org.koin.android.ext.android.inject
 import org.koin.androidx.viewmodel.ext.android.viewModel
+import java.io.IOException
 
 
 class EditPhotoFragment : BaseFragment<EditPhotoFragmentBinding>(R.layout.edit_photo_fragment) {
@@ -23,11 +27,10 @@ class EditPhotoFragment : BaseFragment<EditPhotoFragmentBinding>(R.layout.edit_p
         super.onViewCreated(view, savedInstanceState)
         binding.viewModel = viewModel
         binding.lifecycleOwner = viewLifecycleOwner
+
         binding.editableImage.setImageBitmap(storage.getImg())
 
-        changeImageContrast()
-        changeImageBrightness()
-        changeImageSaturation()
+        editPhoto()
         changeImageShade()
     }
 
@@ -35,57 +38,14 @@ class EditPhotoFragment : BaseFragment<EditPhotoFragmentBinding>(R.layout.edit_p
         super.setObservers()
 
         viewModel.saveImageInFolder.observe(viewLifecycleOwner) {
-            galleryInjector.saveImage(binding.editableImage, requireActivity())
-        }
-
-        viewModel.restoreImage.observe(viewLifecycleOwner) {
-            binding.editableImage.setImageBitmap(storage.restoreImage())
+            saveImage()
         }
     }
 
-    private fun changeImageContrast() {
-        binding.contrastSlider.addOnChangeListener { rangeSlider, value, fromUser ->
-            binding.editableImage.contrast = value
+    private fun editPhoto() {
+        binding.sliderEditor.addOnChangeListener { _, value, _ ->
+            viewModel.onAttributeChanged(value)
         }
-
-        binding.contrastSlider.addOnSliderTouchListener(object : Slider.OnSliderTouchListener {
-            override fun onStartTrackingTouch(slider: Slider) {
-            }
-
-            override fun onStopTrackingTouch(slider: Slider) {
-                storage.saveImage(binding.editableImage.drawable.toBitmap())
-            }
-        })
-    }
-
-    private fun changeImageBrightness() {
-        binding.brightnessSlider.addOnChangeListener { rangeSlider, value, fromUser ->
-            binding.editableImage.brightness = value
-        }
-
-        binding.brightnessSlider.addOnSliderTouchListener(object : Slider.OnSliderTouchListener {
-            override fun onStartTrackingTouch(slider: Slider) {
-            }
-
-            override fun onStopTrackingTouch(slider: Slider) {
-                storage.saveImage(binding.editableImage.drawable.toBitmap())
-            }
-        })
-    }
-
-    private fun changeImageSaturation() {
-        binding.saturationSlider.addOnChangeListener { rangeSlider, value, fromUser ->
-            binding.editableImage.saturation = value
-        }
-
-        binding.saturationSlider.addOnSliderTouchListener(object : Slider.OnSliderTouchListener {
-            override fun onStartTrackingTouch(slider: Slider) {
-            }
-
-            override fun onStopTrackingTouch(slider: Slider) {
-                storage.saveImage(binding.editableImage.drawable.toBitmap())
-            }
-        })
     }
 
     private fun changeImageShade() {
@@ -95,5 +55,59 @@ class EditPhotoFragment : BaseFragment<EditPhotoFragmentBinding>(R.layout.edit_p
                 binding.editableImage.colorFilter = LightingColorFilter(color, Color.BLACK)
             }
         })
+    }
+
+    private fun saveImage() {
+        try {
+            galleryInjector.saveMediaIntoGallery(createFilteredImage())
+            Snackbar.make(binding.editableImage, "Photo save", Snackbar.LENGTH_SHORT).show()
+        } catch (e: IOException) {
+            e.printStackTrace()
+            Snackbar.make(binding.editableImage, "Save error", Snackbar.LENGTH_SHORT).show()
+        }
+    }
+
+    private fun createFilteredImage(): Bitmap {
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
+            val bitmap = Bitmap.createBitmap(
+                binding.editableImage.width,
+                binding.editableImage.height,
+                Bitmap.Config.ARGB_8888
+            )
+            val location = IntArray(2)
+            binding.editableImage.getLocationInWindow(location)
+            PixelCopy.request(
+                requireActivity().window,
+                Rect(
+                    location[0],
+                    location[1],
+                    location[0] + binding.editableImage.width,
+                    location[1] + binding.editableImage.height
+                ),
+                bitmap,
+                {
+                    if (it == PixelCopy.SUCCESS) {
+                        val canvas = Canvas(bitmap)
+
+                        val paint = Paint()
+                        paint.colorFilter = binding.editableImage.colorFilter
+
+                        canvas.drawBitmap(bitmap, 0f, 0f, paint)
+                    }
+                },
+                Handler(Looper.getMainLooper())
+            )
+            return bitmap
+        } else {
+            val tBitmap = Bitmap.createBitmap(
+                binding.editableImage.width, binding.editableImage.height, Bitmap.Config.RGB_565
+            )
+            val canvas = Canvas(tBitmap)
+
+            val paint = Paint()
+            paint.colorFilter = binding.editableImage.colorFilter
+            canvas.drawBitmap(tBitmap, 0f, 0f, paint)
+            return tBitmap
+        }
     }
 }
