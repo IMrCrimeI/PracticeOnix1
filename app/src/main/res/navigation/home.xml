@@ -2,15 +2,27 @@
 <navigation xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:id="@+id/home"
-    app:startDestination="@id/splashFragment">
-
+    app:startDestination="@id/selectPhotoFragment">
     <fragment
-        android:id="@+id/splashFragment"
-        android:name="com.onix.internship.ui.splash.SplashFragment"
-        android:label="SplashFragment" />
+        android:id="@+id/selectPhotoFragment"
+        android:name="com.onix.internship.ui.selectPhoto.SelectPhotoFragment"
+        android:label="SelectPhotoFragment" >
+        <action
+            android:id="@+id/action_selectPhotoFragment_to_cropPhotoFragment"
+            app:destination="@id/cropPhotoFragment" />
+    </fragment>
     <fragment
-        android:id="@+id/translateFragment"
-        android:name="com.onix.internship.ui.translate.TranslateFragment"
-        android:label="TranslateFragment" />
-
+        android:id="@+id/cropPhotoFragment"
+        android:name="com.onix.internship.ui.cropPhoto.CropPhotoFragment"
+        android:label="CropPhotoFragment" >
+        <action
+            android:id="@+id/action_cropPhotoFragment_to_editPhotoFragment"
+            app:destination="@id/editPhotoFragment"
+            app:popUpTo="@id/cropPhotoFragment"
+            app:popUpToInclusive="true" />
+    </fragment>
+    <fragment
+        android:id="@+id/editPhotoFragment"
+        android:name="com.onix.internship.ui.editPhoto.EditPhotoFragment"
+        android:label="EditPhotoFragment" />
 </navigation>
