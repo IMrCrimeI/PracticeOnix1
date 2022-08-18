@@ -1,16 +1,40 @@
 <?xml version="1.0" encoding="utf-8"?>
 <navigation xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/home"
-    app:startDestination="@id/splashFragment">
-
+    app:startDestination="@id/homeFragment">
     <fragment
-        android:id="@+id/splashFragment"
-        android:name="com.onix.internship.ui.splash.SplashFragment"
-        android:label="SplashFragment" />
+        android:id="@+id/searchFragment"
+        android:name="com.onix.internship.ui.search.SearchFragment"
+        android:label="SearchFragment"
+        tools:layout="@layout/fragment_search" />
     <fragment
-        android:id="@+id/translateFragment"
-        android:name="com.onix.internship.ui.translate.TranslateFragment"
-        android:label="TranslateFragment" />
-
+        android:id="@+id/advancedSearchFragment"
+        android:name="com.onix.internship.ui.advanced_search.AdvancedSearchFragment"
+        android:label="AdvancedSearchFragment"
+        tools:layout="@layout/fragment_advanced_search" />
+    <fragment
+        android:id="@+id/homeFragment"
+        android:name="com.onix.internship.ui.home.HomeFragment"
+        android:label="HomeFragment"
+        tools:layout="@layout/fragment_home" >
+        <action
+            android:id="@+id/action_homeFragment_to_resultFragment"
+            app:destination="@id/resultFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/resultFragment"
+        tools:layout="@layout/fragment_result"
+        android:name="com.onix.internship.ui.result.ResultFragment"
+        android:label="ResultFragment" >
+        <action
+            android:id="@+id/action_resultFragment_to_detailsFragment"
+            app:destination="@id/detailsFragment" />
+    </fragment>
+    <fragment
+        tools:layout="@layout/fragment_details"
+        android:id="@+id/detailsFragment"
+        android:name="com.onix.internship.ui.result.details.DetailsFragment"
+        android:label="DetailsFragment" />
 </navigation>

@@ -78,3 +78,11 @@ fun SwipeRefreshLayout.onRefresh(callback: () -> Unit) {
         isRefreshing = false
     }
 }
+
+@BindingAdapter("loadUrlImage")
+fun ImageView.loadUrlImage(image: String?) {
+    val url = "https:$image"
+    Glide.with(context)
+        .load(Uri.parse(url))
+        .into(this)
+}

@@ -15,4 +15,26 @@
 
     <string name="menu_log_out">Log out</string>
     <string name="canvas">Canvas</string>
+    <string name="title">%s\n%s\n%s</string>
+    <string name="id">XC%s</string>
+    <string name="information_about_the_record">Information about the record</string>
+    <string name="bird_song_amplitude">Bird song amplitude:</string>
+    <string name="post_author">Post Author:</string>
+    <string name="date">Date:</string>
+    <string name="time">Time:</string>
+    <string name="latitude">Latitude:</string>
+    <string name="longitude">Longitude:</string>
+    <string name="place">Place:</string>
+    <string name="country">Country:</string>
+    <string name="height">Height:</string>
+    <string name="advanced_search">advanced search</string>
+    <string name="latin_name">Latin name:</string>
+    <string name="catalog_number">Catalog number:</string>
+    <string name="search">Search</string>
+    <string name="search_records">Search records…</string>
+
+    <string-array name="tab_headers">
+        <item>Search</item>
+        <item>Advanced search</item>
+    </string-array>
 </resources>
