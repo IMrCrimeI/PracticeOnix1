@@ -1,11 +1,17 @@
 <?xml version="1.0" encoding="utf-8"?>
 <layout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto">
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
 
     <data>
+
         <variable
             name="birdInfo"
             type="com.onix.internship.entity.BirdInfo" />
+
+        <variable
+            name="viewModel"
+            type="com.onix.internship.ui.result.details.DetailsViewModel" />
     </data>
 
     <androidx.constraintlayout.widget.ConstraintLayout
@@ -25,7 +31,6 @@
             android:id="@+id/textBirdSong"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginStart="24dp"
             android:text="@string/bird_song_amplitude"
             android:textColor="@color/black"
             android:textSize="18sp"
@@ -37,76 +42,97 @@
             android:layout_height="wrap_content"
             app:layout_constraintTop_toBottomOf="@+id/textBirdSong" />
 
+        <androidx.appcompat.widget.AppCompatImageView
+            android:id="@+id/playPauseMusic"
+            android:layout_width="50dp"
+            android:layout_height="50dp"
+            android:onClick="@{_ -> viewModel.playMusic(birdInfo)}"
+            android:src="@drawable/ic_play"
+            app:layout_constraintBottom_toTopOf="@+id/textPostAuthor"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/birdSongImage"
+            tools:layout_editor_absoluteX="0dp" />
 
         <TextView
             android:id="@+id/textPostAuthor"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginStart="24dp"
             android:text="@{@string/post_author + birdInfo.rec}"
             android:textColor="@color/black"
             android:textSize="18sp"
-            app:layout_constraintTop_toBottomOf="@id/birdSongImage" />
+            app:layout_constraintBottom_toTopOf="@+id/textDate"
+            app:layout_constraintTop_toBottomOf="@id/playPauseMusic" />
 
         <TextView
             android:id="@+id/textDate"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginStart="24dp"
             android:text="@{@string/date + birdInfo.date}"
             android:textColor="@color/black"
             android:textSize="18sp"
+            app:layout_constraintBottom_toTopOf="@+id/textTime"
             app:layout_constraintTop_toBottomOf="@+id/textPostAuthor" />
 
         <TextView
             android:id="@+id/textTime"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginStart="24dp"
             android:text="@{@string/time + birdInfo.time}"
             android:textColor="@color/black"
             android:textSize="18sp"
+            app:layout_constraintBottom_toTopOf="@+id/textLatitude"
             app:layout_constraintTop_toBottomOf="@+id/textDate" />
 
         <TextView
             android:id="@+id/textLatitude"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginStart="24dp"
             android:text="@{@string/latitude + birdInfo.lat}"
             android:textColor="@color/black"
             android:textSize="18sp"
+            app:layout_constraintBottom_toTopOf="@+id/textLongitude"
             app:layout_constraintTop_toBottomOf="@+id/textTime" />
 
         <TextView
             android:id="@+id/textLongitude"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginStart="24dp"
             android:text="@{@string/longitude + birdInfo.lng}"
             android:textColor="@color/black"
             android:textSize="18sp"
+            app:layout_constraintBottom_toTopOf="@+id/textPlace"
             app:layout_constraintTop_toBottomOf="@+id/textLatitude" />
 
         <TextView
             android:id="@+id/textPlace"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginStart="24dp"
             android:text="@{@string/place + birdInfo.loc}"
             android:textColor="@color/black"
             android:textSize="18sp"
+            app:layout_constraintBottom_toTopOf="@+id/textCountry"
             app:layout_constraintTop_toBottomOf="@+id/textLongitude" />
 
         <TextView
             android:id="@+id/textCountry"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginStart="24dp"
             android:text="@{@string/country + birdInfo.cnt}"
             android:textColor="@color/black"
             android:textSize="18sp"
+            app:layout_constraintBottom_toTopOf="@+id/downloadSong"
             app:layout_constraintTop_toBottomOf="@+id/textPlace" />
+
+        <com.google.android.material.button.MaterialButton
+            android:id="@+id/downloadSong"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/download_song"
+            android:onClick="@{_ -> viewModel.downloadSong(birdInfo)}"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/textCountry" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 </layout>

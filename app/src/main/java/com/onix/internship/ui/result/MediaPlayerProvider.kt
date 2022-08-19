@@ -4,24 +4,24 @@ import android.media.MediaPlayer
 import com.onix.internship.entity.BirdInfo
 
 class MediaPlayerProvider {
-
-    private var currentRecording = BirdInfo()
-
     private val player = MediaPlayer()
+    private var oldBirdId = ""
 
-    fun setNewRecording(item: BirdInfo) {
-        if (currentRecording != item) {
-            if (currentRecording.isPlaying.get() && player.isPlaying)
+    fun setNewRecording(bird: BirdInfo) {
+        if (bird.id != oldBirdId) {
+            if (player.isPlaying) {
                 stop()
-
-            currentRecording = item
+            }
+            oldBirdId = bird.id
+            playPause(bird)
+        } else {
+            playPause(bird)
         }
     }
 
-    fun playPause() {
-        if (!currentRecording.isPlaying.get() && !player.isPlaying) {
-            currentRecording.isPlaying.set(true)
-            player.setDataSource(currentRecording.file)
+    private fun playPause(bird: BirdInfo) {
+        if (!player.isPlaying && !bird.isPlaying) {
+            player.setDataSource(bird.file)
             player.prepare()
             player.start()
         } else {
@@ -29,10 +29,12 @@ class MediaPlayerProvider {
         }
     }
 
-    private fun stop() {
-        currentRecording.isPlaying.set(false)
+    fun stop() {
         player.stop()
         player.reset()
     }
 
+    fun setListener(listener: MediaPlayer.OnBufferingUpdateListener) {
+        player.setOnBufferingUpdateListener(listener)
+    }
 }

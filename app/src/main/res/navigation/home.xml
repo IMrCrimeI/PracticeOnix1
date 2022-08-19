@@ -31,10 +31,17 @@
         <action
             android:id="@+id/action_resultFragment_to_detailsFragment"
             app:destination="@id/detailsFragment" />
+        <argument
+            android:name="searchQuery"
+            app:argType="string" />
     </fragment>
     <fragment
         tools:layout="@layout/fragment_details"
         android:id="@+id/detailsFragment"
         android:name="com.onix.internship.ui.result.details.DetailsFragment"
-        android:label="DetailsFragment" />
+        android:label="DetailsFragment" >
+        <argument
+            android:name="bird"
+            app:argType="com.onix.internship.entity.BirdInfo" />
+    </fragment>
 </navigation>

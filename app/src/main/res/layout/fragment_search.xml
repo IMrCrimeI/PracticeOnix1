@@ -28,6 +28,8 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:hint="@string/search_records"
+                android:inputType="text"
+                android:autofillHints="phone"
                 android:text="@={viewModel.model.gen}" />
         </com.google.android.material.textfield.TextInputLayout>
 

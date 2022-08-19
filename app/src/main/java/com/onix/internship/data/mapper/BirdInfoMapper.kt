@@ -31,7 +31,8 @@ class BirdInfoMapper(private val songInfoMapper: SongInfoMapper) {
             also = apiBirdInfo.also ?: listOf(),
             rmk = apiBirdInfo.rmk ?: "",
             bird_seen = apiBirdInfo.bird_seen ?: "",
-            playback_used = apiBirdInfo.playback_used ?: ""
+            playback_used = apiBirdInfo.playback_used ?: "",
+            isPlaying = false
         )
     }
 }

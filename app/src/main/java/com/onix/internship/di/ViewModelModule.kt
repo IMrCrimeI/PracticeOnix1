@@ -11,9 +11,9 @@ import org.koin.dsl.module
 
 val viewModelModule = module {
     viewModel { MainViewModel() }
-    viewModel { SearchViewModel(get()) }
+    viewModel { SearchViewModel() }
     viewModel { AdvancedSearchViewModel() }
     viewModel { HomeViewModel() }
-    viewModel { ResultViewModel(get(), get(), get(), get()) }
-    viewModel { DetailsViewModel() }
+    viewModel { ResultViewModel(get(), get()) }
+    viewModel { DetailsViewModel(get()) }
 }
