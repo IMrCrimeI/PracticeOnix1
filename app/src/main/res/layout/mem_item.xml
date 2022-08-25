@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <data>
+
+        <variable
+            name="memItem"
+            type="com.onix.internship.entity.MemInfo" />
+    </data>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/mainContainer"
+        android:layout_marginVertical="8dp"
+        android:layout_width="match_parent"
+        android:layout_height="284dp">
+
+        <androidx.appcompat.widget.AppCompatImageView
+            android:id="@+id/playPauseButton"
+            loadUrlImage="@{memItem.image}"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:scaleType="fitXY" />
+
+        <com.onix.internship.ui.mem.OutlineTextView
+            android:id="@+id/birdName"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="14dp"
+            android:gravity="center"
+            android:text="@{memItem.topText}"
+            android:textColor="@color/white"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:outlineColor="@color/black"
+            app:outlineWidth="1dp" />
+
+        <com.onix.internship.ui.mem.OutlineTextView
+            android:id="@+id/birdNameText"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="14dp"
+            android:gravity="center"
+            android:text="@{memItem.bottomText}"
+            android:textColor="@color/white"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:outlineColor="@color/black"
+            app:outlineWidth="1dp" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</layout>

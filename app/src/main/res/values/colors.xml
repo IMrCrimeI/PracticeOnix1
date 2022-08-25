@@ -11,4 +11,9 @@
     <color name="colorPaint">#FF000000</color>
     <color name="colorBackground">#FFFFFFFF</color>
 
+    <declare-styleable name="OutlineTextView">
+        <attr name="outlineColor" format="color" />
+        <attr name="outlineWidth" format="dimension" />
+
+    </declare-styleable>
 </resources>
