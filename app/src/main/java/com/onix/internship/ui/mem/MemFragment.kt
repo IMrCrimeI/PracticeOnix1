@@ -4,12 +4,16 @@ import android.os.Bundle
 import android.view.Gravity
 import android.view.View
 import android.widget.PopupMenu
-import androidx.recyclerview.widget.RecyclerView
+import androidx.lifecycle.Lifecycle
+import androidx.lifecycle.lifecycleScope
+import androidx.lifecycle.repeatOnLifecycle
 import com.onix.internship.R
 import com.onix.internship.arch.BaseFragment
 import com.onix.internship.arch.ext.onRefresh
 import com.onix.internship.databinding.FragmentMemBinding
 import com.onix.internship.ui.mem.adapter.RecyclerViewAdapter
+import kotlinx.coroutines.flow.collectLatest
+import kotlinx.coroutines.launch
 import org.koin.androidx.viewmodel.ext.android.viewModel
 
 
@@ -21,9 +25,6 @@ class MemFragment : BaseFragment<FragmentMemBinding>(R.layout.fragment_mem) {
         binding.viewModel = viewModel
 
         setRecyclerAdapter()
-
-        binding.swipeRefreshLayout.onRefresh { viewModel.reloadRecycler() }
-
     }
 
     override fun setObservers() {
@@ -38,12 +39,16 @@ class MemFragment : BaseFragment<FragmentMemBinding>(R.layout.fragment_mem) {
         popup.menuInflater.inflate(R.menu.main_menu, popup.menu)
         popup.setOnMenuItemClickListener { menuItem -> // Toast message on menu item clicked
             when (menuItem.itemId) {
+                R.id.menuAll -> {
+                    viewModel.filter.set(getString(R.string.all))
+                    true
+                }
                 R.id.menuCat -> {
-                    viewModel.filterCat()
+                    viewModel.filter.set(getString(R.string.cat))
                     true
                 }
                 R.id.menuDog -> {
-
+                    viewModel.filter.set(getString(R.string.dog))
                     true
                 }
                 else -> false
@@ -57,17 +62,14 @@ class MemFragment : BaseFragment<FragmentMemBinding>(R.layout.fragment_mem) {
         val memesAdapter = RecyclerViewAdapter()
         binding.memesRecycler.adapter = memesAdapter
 
-        viewModel.listOfMemes.observe(viewLifecycleOwner) {
-            memesAdapter.submitList(it)
-        }
+        binding.swipeRefreshLayout.onRefresh { memesAdapter.refresh() }
 
-        binding.memesRecycler.addOnScrollListener(object : RecyclerView.OnScrollListener() {
-            override fun onScrolled(recyclerView: RecyclerView, dx: Int, dy: Int) {
-                super.onScrolled(recyclerView, dx, dy)
-                if (!recyclerView.canScrollVertically(1)) {
-                    viewModel.loadMore()
+        viewLifecycleOwner.lifecycleScope.launch {
+            repeatOnLifecycle(Lifecycle.State.STARTED) {
+                viewModel.getMemList().collectLatest {
+                    memesAdapter.submitData(viewModel.filterData(it))
                 }
             }
-        })
+        }
     }
 }

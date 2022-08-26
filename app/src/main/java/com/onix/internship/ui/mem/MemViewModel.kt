@@ -1,59 +1,43 @@
 package com.onix.internship.ui.mem
 
+import androidx.databinding.ObservableField
 import androidx.lifecycle.LiveData
-import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.viewModelScope
+import androidx.paging.*
 import com.onix.internship.arch.BaseViewModel
 import com.onix.internship.arch.lifecycle.SingleLiveEvent
-import com.onix.internship.arch.network.onFailure
-import com.onix.internship.arch.network.onSuccess
 import com.onix.internship.data.repository.MemRepository
 import com.onix.internship.entity.MemInfo
-import kotlinx.coroutines.launch
+import kotlinx.coroutines.flow.Flow
 
-class MemViewModel(private val memRepository: MemRepository) : BaseViewModel() {
-
-    private val _listOfMemes = MutableLiveData<List<MemInfo>>()
-    val listOfMemes: LiveData<List<MemInfo>> = _listOfMemes
-
-    private val _errorMessage = SingleLiveEvent<String>()
-    val errorMessage: LiveData<String> = _errorMessage
+class MemViewModel(
+    private val memRepository: MemRepository
+) : BaseViewModel() {
 
     private val _openFilterPopup = SingleLiveEvent<Unit>()
     val openFilterPopup: LiveData<Unit> = _openFilterPopup
 
-    private val currentList = mutableListOf<MemInfo>()
-    private var currentPage = DEFAULT_PAGE
+    val filter: ObservableField<String> = ObservableField("All")
 
-    init {
-        getBirdListFromApi(currentPage)
-        currentPage++
+    fun getMemList(): Flow<PagingData<MemInfo>> {
+        return Pager(
+            config = PagingConfig(pageSize = ITEMS_PER_PAGE, enablePlaceholders = false),
+            pagingSourceFactory = { memRepository.memesPagingSource() }
+        )
+            .flow
+            .cachedIn(viewModelScope)
     }
 
-    private fun getBirdListFromApi(page: Int) {
-        viewModelScope.launch {
-            memRepository.getMem(page)
-                .onSuccess {
-                    currentList.addAll(it)
-                    _listOfMemes.postValue(currentList.toList())
-                }
-                .onFailure { _errorMessage.postValue(it.message) }
+    fun filterData(data: PagingData<MemInfo>): PagingData<MemInfo> {
+        return if (filter.get() == "All") {
+            data
+        } else {
+            data.filter {
+                val tags = it.tags.lowercase()
+                val filter = filter.get()!!.lowercase()
+                tags.contains(filter)
+            }
         }
-    }
-
-    fun filterCat() {
-
-    }
-
-    fun reloadRecycler() {
-        currentList.clear()
-        currentPage = 2
-        getBirdListFromApi(DEFAULT_PAGE)
-    }
-
-    fun loadMore() {
-        getBirdListFromApi(currentPage)
-        currentPage++
     }
 
     fun openFilterPopup() {
@@ -61,6 +45,6 @@ class MemViewModel(private val memRepository: MemRepository) : BaseViewModel() {
     }
 
     companion object {
-        const val DEFAULT_PAGE = 1
+        private const val ITEMS_PER_PAGE = 8
     }
 }
