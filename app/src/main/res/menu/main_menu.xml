@@ -2,7 +2,12 @@
 <menu xmlns:android="http://schemas.android.com/apk/res/android">
 
     <item
-        android:id="@+id/menu_log_out"
-        android:title="@string/menu_log_out" />
-
+        android:id="@+id/menuAll"
+        android:title="@string/all" />
+    <item
+        android:id="@+id/menuCat"
+        android:title="@string/cat" />
+    <item
+        android:id="@+id/menuDog"
+        android:title="@string/dog" />
 </menu>

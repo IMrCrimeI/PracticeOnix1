@@ -2,15 +2,9 @@
 <navigation xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:id="@+id/home"
-    app:startDestination="@id/splashFragment">
-
+    app:startDestination="@id/memFragment">
     <fragment
-        android:id="@+id/splashFragment"
-        android:name="com.onix.internship.ui.splash.SplashFragment"
-        android:label="SplashFragment" />
-    <fragment
-        android:id="@+id/translateFragment"
-        android:name="com.onix.internship.ui.translate.TranslateFragment"
-        android:label="TranslateFragment" />
-
+        android:id="@+id/memFragment"
+        android:name="com.onix.internship.ui.mem.MemFragment"
+        android:label="MemFragment" />
 </navigation>
