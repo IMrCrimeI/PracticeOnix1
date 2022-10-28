@@ -2,9 +2,17 @@
 <navigation xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:id="@+id/home"
-    app:startDestination="@id/memFragment">
+    app:startDestination="@id/userFragment">
     <fragment
-        android:id="@+id/memFragment"
-        android:name="com.onix.internship.ui.mem.MemFragment"
-        android:label="MemFragment" />
+        android:id="@+id/userFragment"
+        android:name="com.onix.internship.ui.user.UserFragment"
+        android:label="UserFragment" >
+        <action
+            android:id="@+id/action_userFragment_to_userResultFragment"
+            app:destination="@id/userResultFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/userResultFragment"
+        android:name="com.onix.internship.ui.userresult.UserResultFragment"
+        android:label="UserResultFragment" />
 </navigation>

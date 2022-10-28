@@ -13,7 +13,7 @@ class NetworkFactory {
 
     private val retrofit: Retrofit
         get() = Retrofit.Builder()
-            .baseUrl(LOCAL_BASE_URL)
+            .baseUrl(BASE_URL)
             .addConverterFactory(GsonConverterFactory.create())
             .client(okHttpClient)
             .build()
@@ -24,7 +24,6 @@ class NetworkFactory {
             .build()
 
     companion object {
-        const val BASE_URL = "http://alpha-meme-maker.herokuapp.com"
-        const val LOCAL_BASE_URL = "https://podolyanbogdan.github.io"
+        const val BASE_URL = "https://api.agify.io"
     }
 }

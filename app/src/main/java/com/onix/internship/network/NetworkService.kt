@@ -1,14 +1,11 @@
 package com.onix.internship.network
 
-import com.onix.internship.entity.network.ApiMemPageInfo
+import com.onix.internship.entity.network.ApiUserInfo
 import retrofit2.Response
 import retrofit2.http.GET
-import retrofit2.http.Path
+import retrofit2.http.Query
 
 interface NetworkService {
-    @GET("/{page}")
-    suspend fun getResultOfSearch(@Path("page") page: Int): Response<ApiMemPageInfo>
-
-    @GET("/localememes/{page}")
-    suspend fun getMeme(@Path("page") page: Int): Response<ApiMemPageInfo>
+    @GET("/")
+    suspend fun getUser(@Query("name") name: String): Response<ApiUserInfo>
 }
